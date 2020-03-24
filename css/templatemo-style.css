@@ -172,7 +172,7 @@ h2 { font-size: 1.8rem; }
 
 .tm-contact-form {
     padding: 68px;
-    background: white;
+    background: var(--maincolor);
     margin-top: -56px;
     position: relative;
     z-index: 900;
