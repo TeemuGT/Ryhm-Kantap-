@@ -29,26 +29,16 @@ body{
 
 }
 .box .inputBox input {
-    width: 80%;
+    width: 100%;
     padding: 10px 0;
     font-size: 16px;
     color: #fff;
     margin-bottom: 30px;
-    margin-left: 85px;
+    margin-left: 10px;
     border: none;
     border-bottom: 1px solid#fff;
     outline: none;
     background: transparent;
-}
-.box .inputBox label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
 }
 .box .inputBox input:focus ~ label,
 .box .inputBox input:focus ~ label,
@@ -68,4 +58,13 @@ body{
     padding: 10px 20px;
     cursor: pointer;
 }
-
+.button {
+    background-color:background-color: #e7e7e7; color: black;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+  }
