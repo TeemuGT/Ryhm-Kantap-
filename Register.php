@@ -22,7 +22,7 @@
                 <div class="inputBox">
                     <input type="password" name="" required="" placeholder="Vahvista salasana">
                 </div>
-                <input type="submit" name="" value="Luo tili">
+                <input type="submit" name="submitUser" value="Luo tili">
                 <input type="button" name="" value="Palaa">
             </form>
         </div>
@@ -52,7 +52,7 @@ if(isset($_POST['submitUser'])){
   //Testataan pääsivulle paluu
 
   //Palataan pääsivulle jos tallennus onnistui -kesken
-    header("Location: index.php");
+    header("Location: LoginUser.php");
     
  }
 }
@@ -80,12 +80,12 @@ if(isset($_SESSION['swarningInput'])){
   $data['pwd'] = password_hash($_POST['givenPassword'].$added, PASSWORD_BCRYPT);
   try {
     //***Email ei saa olla käytetty aiemmin
-    $sql = "SELECT COUNT(*) FROM wsk6_user where userEmail  =  " . "'".$_POST['givenEmail']."'"  ;
+    $sql = "SELECT COUNT(*) FROM projekti_user where userEmail  =  " . "'".$_POST['givenEmail']."'"  ;
     $kysely=$DBH->prepare($sql);
     $kysely->execute();				
     $tulos=$kysely->fetch();
     if($tulos[0] == 0){ //email ei ole käytössä
-     $STH = $DBH->prepare("INSERT INTO wsk6_user (userName, userEmail, userPwd) VALUES (:name, :email, :pwd);");
+     $STH = $DBH->prepare("INSERT INTO projekti_user (userName, userEmail, userPwd) VALUES (:name, :email, :pwd);");
      $STH->execute($data);
      header("Location: index.php"); //Palataan pääsivulle kirjautuneena
     }else{
