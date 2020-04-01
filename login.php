@@ -1,13 +1,11 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <html lang="en">
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
     <div class="box">
         <h2>Kirjautuminen</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -15,20 +13,18 @@
                 <input type="text" placeholder="Käyttäjänimi" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
-            <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <div class="inputBox  <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <input type="password" placeholder="Salasana" name="password" class="form-control">
                 <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p> Ei käyttäjätiliä? <a href="register.php">Rekisteröidy</a>.</p>
         </form>
-    </div>  
-    </body>
+    </div>    
+</body>
 </html>
-
 
 <?php
 // Initialize the session
