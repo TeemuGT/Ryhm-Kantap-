@@ -7,93 +7,114 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <div class="box">
-            <h2>Luo uusi tili</h2>
-            <form>
-                <div class="inputBox">
-                    <input type="text" name="" required="" placeholder="Käyttäjänimi">
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="givenEmail" required="" placeholder="Sähköpostiosoite">
-                </div>
-                <div class="inputBox">
-                    <input type="password" name="givenPassword" required="" placeholder="Salasana">
-                </div>
-                <div class="inputBox">
-                    <input type="password" name="" required="" placeholder="Vahvista salasana">
-                </div>
-                <input type="submit" name="submitUser" value="Luo tili">
-                <input type="button" name="" value="Palaa">
-            </form>
-        </div>
+    <div class="box">
+        <h2>Uuden tilin luonti</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="inputBox <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <input type="text" placeholder="Käyttäjänimi" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <input type="password" placeholder="Salasana"name="password" class="form-control" value="<?php echo $password; ?>">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="inputBox <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <input type="password" placeholder="Vahvista salasana"name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+            <p><a href="login.php">Palaa</a>.</p>
+        </form>
+    </div> 
     </body>
 </html>
 
-
 <?php
-//Lomakkeen submit painettu?
-if(isset($_POST['submitUser'])){
-  //Tarkistetaan syötteet myös palvelimella
-  if(strlen($_POST['givenUsername'])<4){
-   $_SESSION['swarningInput']="Illegal username (min 4 chars)";
-  }else if(!filter_var($_POST['givenEmail'], FILTER_VALIDATE_EMAIL)){
-   $_SESSION['swarningInput']="Illegal email";
-  }else if(strlen($_POST['givenPassword'])<8){
-  $_SESSION['swarningInput']="Illegal password (min 8 chars)";
-  }else if($_POST['givenPassword'] != $_POST['givenPasswordVerify']){
-  $_SESSION['swarningInput']="Given password and verified not same";
-  }else{
-  unset($_SESSION['swarningInput']);
-  //1. Tiedot sessioon
-  $_SESSION['suserName']=$_POST['givenUsername'];
-  $_SESSION['sloggedIn']="yes";
-  $_SESSION['suserEmail']= $_POST['givenEmail'];
-  //2. Tiedot kantaan - kesken
-  //Testataan pääsivulle paluu
+require_once "config/config.php";
+ 
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
 
-  //Palataan pääsivulle jos tallennus onnistui -kesken
-    header("Location: LoginUser.php");
-    
- }
-}
-?>
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Käyttäjänimen vahvistus
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Syötä käyttäjänimi.";
+    } else{
+        // ehto
+        $sql = "SELECT id FROM users WHERE username = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
 
-<?php
-//Luovutetaanko ja palataan takaisin pääsivulle alkutilanteeseen
-if(isset($_POST['submitBack'])){
-  session_unset();
-  session_destroy();
-  header("Location: xxx.php");
-}
-?>
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-<?php
-  //Näytetäänkö lomakesyötteen aiheuttama varoitus?
-if(isset($_SESSION['swarningInput'])){
-  echo("<p class=\"warning\">ILLEGAL INPUT: ". $_SESSION['xx']."</p>");
-}
-?>
-<?php
- $data['name'] = $_POST['givenUsername'];
-  $data['email'] = $_POST['givenEmail'];
-  $added='#â‚¬%&&/'; //suolataan annettu salasana
-  $data['pwd'] = password_hash($_POST['givenPassword'].$added, PASSWORD_BCRYPT);
-  try {
-    //***Email ei saa olla käytetty aiemmin
-    $sql = "SELECT COUNT(*) FROM projekti_user where userEmail  =  " . "'".$_POST['givenEmail']."'"  ;
-    $kysely=$DBH->prepare($sql);
-    $kysely->execute();				
-    $tulos=$kysely->fetch();
-    if($tulos[0] == 0){ //email ei ole käytössä
-     $STH = $DBH->prepare("INSERT INTO projekti_user (userName, userEmail, userPwd) VALUES (:name, :email, :pwd);");
-     $STH->execute($data);
-     header("Location: index.php"); //Palataan pääsivulle kirjautuneena
-    }else{
-      $_SESSION['swarningInput']="Email is reserved";
+            $param_username = trim($_POST["username"]);
+            
+            if(mysqli_stmt_execute($stmt)){
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "Käyttäjänimi on jo käytössä.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Oops! Jotain meni vikaan. Yritä myöhemmin uudelleen.";
+            }
+
+            mysqli_stmt_close($stmt);
+        }
     }
-  } catch(PDOException $e) {
-    file_put_contents('log/DBErrors.txt', 'signInUser.php: '.$e->getMessage()."\n", FILE_APPEND);
-    $_SESSION['swarningInput'] = 'Database problem';
     
-  }
+    // Salasanan vahvistus
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Syötä salasana.";     
+    } elseif(strlen(trim($_POST["password"])) < 8){
+        $password_err = "Salasanassa tulee olla vähintään kahdeksan kirjainta.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Salasanan vahvistuksen vahvistaminen
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Vahvista salasana.";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Salasanat eivät vastanneet toisiaan.";
+        }
+    }
+    
+    // Löytyykö virheitä tietojen syöttämisessa?
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            
+            // muuttuja
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); 
+            
+            // suoritus
+            if(mysqli_stmt_execute($stmt)){
+                // ohjaa käyttäjän takaisin kirjautumiseen
+                header("location: login.php");
+            } else{
+                echo "Jotain meni vikaan. Ole hyvä ja yritä myöhemmin uudestaan.";
+            }
+
+            // lopeta
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // sulje yhteys
+    mysqli_close($link);
+}
 ?>
+ 
