@@ -27,91 +27,76 @@
 </html>
 
 <?php
-// Initialize the session
 session_start();
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Onko jo kirjautunut? Ohjaa welcome sivulle (vaihda etusivuun)
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: welcome.php");
     exit;
 }
  
-// Include config file
 require_once "config/config.php";
  
-// Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
  
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Check if username is empty
+    // Onko käyttäjänimikenttä tyhjä
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
+        $username_err = "Syötä käyttäjänimi.";
     } else{
         $username = trim($_POST["username"]);
     }
     
-    // Check if password is empty
+    // Onko salsana syötetty
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
+        $password_err = "Syötä salasana.";
     } else{
         $password = trim($_POST["password"]);
     }
     
-    // Validate credentials
+
     if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
+
         $sql = "SELECT id, username, password FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
+    
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
-            // Set parameters
             $param_username = $username;
             
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Store result
+                // Tiedot kantaan
                 mysqli_stmt_store_result($stmt);
                 
-                // Check if username exists, if yes then verify password
+                // Vahvista salasana jos käyttäjänimi on olemassa
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
                             session_start();
-                            
-                            // Store data in session variables
+
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            // Redirect user to welcome page
+                            // Etusivulle
                             header("location: http://users.metropolia.fi/~teemugt/Hyte%20Projekti%202/Projekti2/#");
                         } else{
-                            // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "Syöttämäsi salasana on virheellinen.";
                         }
                     }
                 } else{
-                    // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $username_err = "Käyttäjänimellä ei löydy tiliä.";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Oops! Jotain meni vikaan! Yritä myöhemmin uudelleen.";
             }
-
-            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
-    
-    // Close connection
     mysqli_close($link);
 }
 ?>

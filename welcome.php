@@ -3,10 +3,9 @@ require_once ("logout.php");
 ?>
 
 <?php
-// Initialize the session
 session_start();
  
-// Check if the user is logged in, if not then redirect him to login page
+// Onko kirjautunut sisään? os ei ohjaa kirjautumissivulle
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
