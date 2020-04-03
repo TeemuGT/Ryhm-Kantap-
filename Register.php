@@ -7,6 +7,7 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
+      
     <div class="box">
         <h2>Uuden tilin luonti</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -26,7 +27,7 @@
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
-            <p><a href="login.php">Palaa</a>.</p>
+            <p><a href="login.php">Palaa</a></p>
         </form>
     </div> 
     </body>

@@ -20,7 +20,7 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p> Ei käyttäjätiliä? <a href="register.php">Rekisteröidy</a>.</p>
+            <p> Ei käyttäjätiliä? <a href="register.php">Rekisteröidy</a></p>
         </form>
     </div>    
 </body>
@@ -31,7 +31,7 @@ session_start();
  
 // Onko jo kirjautunut? Ohjaa welcome sivulle (vaihda etusivuun)
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: etusivu.php");
     exit;
 }
  
@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;                            
                             
                             // Etusivulle
-                            header("location: http://users.metropolia.fi/~teemugt/Hyte%20Projekti%202/Projekti2/#");
+                            header("location: etusivu.php");
                         } else{
                             $password_err = "Syöttämäsi salasana on virheellinen.";
                         }
