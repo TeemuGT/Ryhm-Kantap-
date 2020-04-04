@@ -23,9 +23,9 @@
                 <input type="password" placeholder="Vahvista salasana"name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
+            <div class="button">
+                <input type="submit" class="btn btn-primary" value="Luo tili">
+                <input type="reset" class="btn btn-default" value="Nollaa">
             </div>
             <p><a href="login.php">Palaa</a></p>
         </form>

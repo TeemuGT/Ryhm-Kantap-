@@ -18,9 +18,9 @@
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" class="btn btn-primary" value="Kirjaudu">
             </div>
-            <p> Ei käyttäjätiliä? <a href="register.php">Rekisteröidy</a></p>
+            <p> Ei käyttäjätiliä? <a href="Register.php">Rekisteröidy</a></p>
         </form>
     </div>    
 </body>
