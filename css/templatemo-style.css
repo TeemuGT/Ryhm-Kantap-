@@ -5,6 +5,9 @@ http://www.templatemo.com/tm-514-magazee
 :root {
     --maincolor: #33999a
 }
+:root {
+    --secondcolor: #666666
+}
 :root{
     --mainfont: Monospace, Helvetica, Arial, sans-serif;
 }
@@ -91,11 +94,12 @@ h2 { font-size: 1.8rem; }
     border-color: var(--maincolor);
 }
 
+
 .tm-bg-color-primary { background-color:var(--maincolor); }
 .tm-bg-color-secondary { background-color: var(--maincolor); }
-.tm-bg-color-gray { background-color: var(--maincolor); }
+.tm-bg-color-gray { background-color: var(--secondcolor); }
 .tm-text-color-primary { color: var(--maincolor);}
-.tm-text-color-white { color: var(--maincolor); }
+.tm-text-color-white { color:white; }
 .tm-text-color-gray { color: var(--maincolor); }
 .tm-font-thin { font-weight: 300; }
 .tm-max-w-400 { max-width: 400px; }
