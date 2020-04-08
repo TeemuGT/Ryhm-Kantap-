@@ -7,7 +7,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 ?>
- 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,8 +81,7 @@ http://www.templatemo.com/tm-514-magazee
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
     
     <div class="tm-flex-center p-5">
-      <q class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
-      </q>
+        <h1>Hei, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Tervetuloa sisään.</h1>
     </div>
   </div>
 </section>
