@@ -1,5 +1,5 @@
 
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
     <head>
         <html lang="en">
@@ -24,7 +24,7 @@
                 <input type="password" placeholder="Vahvista salasana"name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
-            <div class="button">
+            <div class="button"<>
                 <input type="submit" class="btn btn-primary" value="Luo tili">
                 <input type="reset" class="btn btn-default" value="Nollaa">
             </div>
