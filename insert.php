@@ -77,14 +77,14 @@ $sahkoposti = mysqli_real_escape_string($link, $_REQUEST['sapo']);
 $sukupuoli = mysqli_real_escape_string($link, $_REQUEST['suku_puoli']);
 $paino = mysqli_real_escape_string($link, $_REQUEST['nyk_paino']);
 $pituus = mysqli_real_escape_string($link, $_REQUEST['nyk_pituus']);
-$leposyke = mysqli_real_escape_string($link, $_REQUEST['leposyke']);
-$makssyke = mysqli_real_escape_string($link, $_REQUEST['makssyke']);
+$leposyke = mysqli_real_escape_string($link, $_REQUEST['lepo_syke']);
+$makssyke = mysqli_real_escape_string($link, $_REQUEST['maks_syke']);
 
  
 // Tiedot kantaan
 $sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', ika = '$ika', paino = '$paino', pituus = '$pituus', leposyke = '$leposyke', makssyke = '$makssyke', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
 if(mysqli_query($link, $sql)){
-    echo "<br>Tiedot lisätty.";
+    header("location: profiili.php");
 } else{
     echo "Virhe. Tietoja ei pystytty päivittää $sql. " . mysqli_error($link);
 }

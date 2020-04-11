@@ -104,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // suoritus
             if(mysqli_stmt_execute($stmt)){
                 // ohjaa käyttäjän takaisin kirjautumiseen
-                header("location: login.php");
+                header("location: Harjoitustiedot.php");
             } else{
                 echo "Jotain meni vikaan. Ole hyvä ja yritä myöhemmin uudestaan.";
             }
