@@ -27,6 +27,10 @@ require_once ("loggedin.php");
         <input type="text" name="suku_puoli" id="sukupuoli">
     </p>
     <p>
+        <label for="ika">Ikä</label>
+        <input type="text" name="nyk_ika" id="ika">
+    </p>
+    <p>
         <label for="sahkoposti">Sähköposti:</label>
         <input type="text" name="sapo" id="sahkoposti">
     </p>
@@ -50,16 +54,23 @@ if($link === false){
 // määritys
 $etunimi = mysqli_real_escape_string($link, $_REQUEST['etu_nimi']);
 $sukunimi = mysqli_real_escape_string($link, $_REQUEST['suku_nimi']);
+$ika = mysqli_real_escape_string($link, $_REQUEST['nyk_ika']);
 $sahkoposti = mysqli_real_escape_string($link, $_REQUEST['sapo']);
 $sukupuoli = mysqli_real_escape_string($link, $_REQUEST['suku_puoli']);
  
 // Tiedot kantaan
-$sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
+$sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', ika = '$ika', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
 if(mysqli_query($link, $sql)){
     echo "<br>Tiedot lisätty.";
 } else{
     echo "Virhe. Tietoja ei pystytty päivittää $sql. " . mysqli_error($link);
 }
+ 
+mysqli_close($link);
+
+}
+?>
+
  
 mysqli_close($link);
 
