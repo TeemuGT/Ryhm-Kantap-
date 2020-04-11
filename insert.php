@@ -1,3 +1,8 @@
+<?php
+require_once ("loggedin.php");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +11,9 @@
 </head>
 <body>
 <form action="insert.php" method="post">
+<div class="tm-flex-center p-5">
+        <h1>Käyttäjän <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> profiilitiedot</h1>
+    </div>
     <p>
         <label for="etunimi">Etunimi</label>
         <input type="text" name="etu_nimi" id="etunimi">
@@ -46,7 +54,7 @@ $sahkoposti = mysqli_real_escape_string($link, $_REQUEST['sapo']);
 $sukupuoli = mysqli_real_escape_string($link, $_REQUEST['suku_puoli']);
  
 // Tiedot kantaan
-$sql = "INSERT INTO users (Etunimi, Sukunimi, Sukupuoli, sahkoposti) VALUES ('$etunimi', '$sukunimi', '$sukupuoli', '$sahkoposti')";
+$sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
 if(mysqli_query($link, $sql)){
     echo "<br>Tiedot lisätty.";
 } else{
