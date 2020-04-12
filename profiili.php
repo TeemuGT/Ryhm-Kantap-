@@ -1,6 +1,13 @@
 <?php
 require_once ("loggedin.php");
+require_once ("config/config.php");
+
+function getUsersData($id){
+    $query = mysql_query("SELECT * FROM 'users" WHERE '$id' =" . $_SESSION["id"]);
+    while ($row = mysql_fetch_assoc($query))
+}
 ?>
+
 
 
 <!DOCTYPE html>
