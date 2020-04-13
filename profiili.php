@@ -1,26 +1,22 @@
-<?php
-require_once ("loggedin.php");
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Profiilitiedot</title>
+<title>Profiili</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form action="insert.php" method="post">
-<div class="tm-flex-center p-5">
-        <h1><?php echo htmlspecialchars($_SESSION["username"]); ?></h1>
-        <h1><?php echo htmlspecialchars($_SESSION["Etunimi"]); ?></h1>
-        <p><a href="insert.php">Päivitä</a></p>
-        <br>
-        <p><a href="etusivu.php">Etusivu</a></p>
+    <div clas="box">
+        <div id="container">
+            {Etunimi} {sukunimi} Profiilitiedot
+        </div>
+        <div id="aboutme">
+            Something something
+        </div>
+        <div id="next">
+            Tietoa
+        </div>
+        <a class=" tm-text-color-white nav-link" href="insert.php">Asetukset</a>
 </div>
-<p><a href="insert.php">Päivitä</a></p>
-        <br>
-        <p><a href="etusivu.php">Etusivu</a></p>
-</form>
 </body>
 </html>

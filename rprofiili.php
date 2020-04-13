@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <?php
 require_once ("loggedin.php");
 require_once ("config/config.php");
@@ -6,7 +13,7 @@ function getUsersData($id){
 
     $array = array ();
     $query = mysql_query("SELECT * FROM users WHERE $id =" . $_SESSION["id"]);
-    while ($row = mysql_fetch_assoc($query))
+    while ($row = mysql_fetch_array($query))
     {
     {
         $array['id'] = $row ['id'];
