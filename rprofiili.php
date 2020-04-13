@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <?php
 require_once ("loggedin.php");
 require_once ("config/config.php");

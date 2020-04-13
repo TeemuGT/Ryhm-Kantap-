@@ -46,7 +46,7 @@ http://www.templatemo.com/tm-514-magazee
         <a class="tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
       </li>
       <li class="nav-item">
-        <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
+        <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="Harjoitustiedot.html">Harjotustiedot</a>
@@ -55,7 +55,7 @@ http://www.templatemo.com/tm-514-magazee
         <a class="tm-text-color-white nav-link" href="#">Asetukset</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="#">Disabled</a>
+        <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
       </li>
     </ul>
     </nav>
@@ -67,9 +67,10 @@ http://www.templatemo.com/tm-514-magazee
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
     <div class="tm-flex-center p-5">
       <div class="tm-md-flex-center">
-        <h2 class="tm-text-color-primary mb-4">Käyttäjän <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> profiilitiedot</h2>
+        <h2 class="tm-text-color-primary mb-4"></h2>
         <form action="insert.php" method="post">
 <div class="tm-flex-center p-5">
+        <h1>Käyttäjän <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> profiilitiedot</h1>
     </div>
     <p>
         <label for="etunimi">Etunimi</label>

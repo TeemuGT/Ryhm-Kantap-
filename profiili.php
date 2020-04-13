@@ -1,3 +1,8 @@
+<?php
+    require_once ("loggedin.php");
+    require_once ("config/config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +22,8 @@
             Tietoa
         </div>
         <a class=" tm-text-color-white nav-link" href="insert.php">Asetukset</a>
+        <a class=" tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
 </div>
 </body>
 </html>
+
