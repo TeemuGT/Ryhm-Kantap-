@@ -1,12 +1,14 @@
 <?php
-require_once ("loggedin.php");
+//https://www.youtube.com/watch?v=BYSsJ55ZUV8&list=PLf1QYWO6pRZh-vdtp1jyfWlM-dpiTiUCO&index=3
+//kokeilua 
+require_once ("require/loggedin.php");
 require_once ("config/config.php");
 
 function getUsersData($id){
 
     $array = array ();
     $q = mysql_query("SELECT * FROM users WHERE $id =" . $_SESSION["id"]);
-    while ($r = mysql_fetch_array($q))
+    while ($r = mysqli_query($link, $query) or die(mysqli_error($link))
     {
         $array['id'] = $r ['id'];
         $array['username'] = $r ['username'];
@@ -27,10 +29,11 @@ function getUsersData($id){
 
 function getID($username)
 {
-    $q = "SELECT 'id' FROM 'users' WHERE 'username' =" . $_SESSION['username'];
-    while($r = mysql_fetch_array ($q))
+    $q = "SELECT 'id' FROM 'users' WHERE 'username' =" .$_SESSION["username"];
+    while($r = mysql_fetch_row ($q))
     {
         return $r['id'];
     }
 }
 ?>
+

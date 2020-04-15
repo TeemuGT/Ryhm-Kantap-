@@ -1,5 +1,5 @@
 <?php
-require_once ("require/loggedin.php");
+require_once ("loggedin.php");
 ?>
 
 
@@ -182,4 +182,3 @@ mysqli_close($link);
 
 }
 ?>
-

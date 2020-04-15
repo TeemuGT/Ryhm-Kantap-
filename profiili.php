@@ -1,12 +1,6 @@
 <?php
-    require_once ("loggedin.php");
-    require_once ("rprofiili.php");
-?>
-
-<?php if(isset($_SESSION['id']))
-{
-    $usersData= getUsersData (getId($_SESSION['id']));
-}
+    require_once ("require/loggedin.php");
+    require_once ("config/config.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,17 +12,19 @@
 </head>
 <body>
     <div clas="box">
-        <div id="container">
-            <?php echo ($usersData['Etunimi']) ?>{sukunimi} Profiilitiedot
-        </div>
-        <div id="aboutme">
-            Something something
-        </div>
-        <div id="next">
-            Tietoa
-        </div>
         <a class=" tm-text-color-white nav-link" href="insert.php">Asetukset</a>
         <a class=" tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
 </div>
 </body>
 </html>
+
+<?php
+//kirjautuneen käyttäjän tietoja 
+//https://www.php.net/manual/en/function.print-r.php
+$query = "SELECT Etunimi, Sukunimi, paino, pituus FROM users WHERE id = " . $_SESSION["id"]; 
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+$row = mysqli_fetch_row($result);
+print "<pre>";
+print_r($row);
+print "<pre>";
+?>

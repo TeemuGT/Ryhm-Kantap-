@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <html lang="en">
@@ -104,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // suoritus
             if(mysqli_stmt_execute($stmt)){
                 // ohjaa käyttäjän takaisin kirjautumiseen
-                header("location: Harjoitustiedot.php");
+                header("location: etusivu.php");
             } else{
                 echo "Jotain meni vikaan. Ole hyvä ja yritä myöhemmin uudestaan.";
             }
