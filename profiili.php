@@ -1,6 +1,12 @@
 <?php
     require_once ("loggedin.php");
-    require_once ("config/config.php");
+    require_once ("rprofiili.php");
+?>
+
+<?php if(isset($_SESSION['id']))
+{
+    $usersData= getUsersData (getId($_SESSION['id']));
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +19,7 @@
 <body>
     <div clas="box">
         <div id="container">
-            {Etunimi} {sukunimi} Profiilitiedot
+            <?php echo ($usersData['Etunimi']) ?>{sukunimi} Profiilitiedot
         </div>
         <div id="aboutme">
             Something something
@@ -26,4 +32,3 @@
 </div>
 </body>
 </html>
-

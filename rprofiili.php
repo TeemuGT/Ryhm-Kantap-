@@ -5,22 +5,21 @@ require_once ("config/config.php");
 function getUsersData($id){
 
     $array = array ();
-    $query = mysql_query("SELECT * FROM users WHERE $id =" . $_SESSION["id"]);
-    while ($row = mysql_fetch_array($query))
+    $q = mysql_query("SELECT * FROM users WHERE $id =" . $_SESSION["id"]);
+    while ($r = mysql_fetch_array($q))
     {
-    {
-        $array['id'] = $row ['id'];
-        $array['username'] = $row ['username'];
-        $array['password'] = $row ['password'];
-        $array['Etunimi'] = $row ['Etunimi'];
-        $array['Sukunimi'] = $row ['Sukunimi'];
-        $array['Sukupuoli'] = $row ['Sukupuoli'];
-        $array['ika'] = $row ['ika'];
-        $array['sahkoposti'] = $row ['sahkoposti'];
-        $array['paino'] = $row ['paino'];
-        $array['pituus'] = $row ['pituus'];
-        $array['leposyke'] = $row ['leposyke'];
-        $array['makssyke'] = $row ['makssyke'];
+        $array['id'] = $r ['id'];
+        $array['username'] = $r ['username'];
+        $array['password'] = $r ['password'];
+        $array['Etunimi'] = $r ['Etunimi'];
+        $array['Sukunimi'] = $r ['Sukunimi'];
+        $array['Sukupuoli'] = $r ['Sukupuoli'];
+        $array['ika'] = $r ['ika'];
+        $array['sahkoposti'] = $r['sahkoposti'];
+        $array['paino'] = $r['paino'];
+        $array['pituus'] = $r['pituus'];
+        $array['leposyke'] = $r['leposyke'];
+        $array['makssyke'] = $r['makssyke'];
     }
 
     return $array;
@@ -28,10 +27,10 @@ function getUsersData($id){
 
 function getID($username)
 {
-    $query = mysql_query("SELECT id FROM users WHERE username= " . $_SESSION["username"]);
-    while($row = mysql_fetch_assoc ($query))
+    $q = "SELECT 'id' FROM 'users' WHERE 'username' =" . $_SESSION['username'];
+    while($r = mysql_fetch_array ($q))
     {
-        return $row['id'];
+        return $r['id'];
     }
 }
 ?>

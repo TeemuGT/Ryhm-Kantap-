@@ -16,7 +16,7 @@
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" placeholder="Salasana"name="password" class="form-control" value="<?php echo $password; ?>">
+                <input type="password" placeholder="Salasana (vähintään kahdeksan kirjainta)"name="password" class="form-control" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="inputBox <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
