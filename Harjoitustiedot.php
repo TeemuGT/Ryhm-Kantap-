@@ -44,13 +44,13 @@ http://www.templatemo.com/tm-514-magazee
         <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Harjoitustiedot.html"><u>Harjotustiedot</u></a>
+        <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjotustiedot</u></a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="#">Asetukset</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="#">Disabled</a>
+        <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
       </li>
     </ul>
     </nav>
@@ -83,16 +83,16 @@ http://www.templatemo.com/tm-514-magazee
         <h2 class="tm-text-color-primary mb-4">Kuinka paljon olet liikkunut?</h2>
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" id="AskelInput" placeholder="Askeleet (kpl)">
+                <input type="text" name="Askel_Input" class="form-control" id="AskelInput" placeholder="Askeleet (kpl)">
             </div>      
             <div class="form-group">
-                <input type="text" class="form-control" id="MatkaInput" placeholder="Matka (m)">
+                <input type="text" name="Matka_Input" class="form-control" id="MatkaInput" placeholder="Matka (km)">
             </div> 
             <div class="form-group">
-                <input type="text" class="form-control" id="SykeInput" placeholder="Syke (min)">
+                <input type="text" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
             </div> 
+            <input class="btn-primary" type="submit" value="submit">
          </form>
-        <input class="btn-primary" type="submit" value="submit">
       </div>
     </div>
   </div>
@@ -168,3 +168,35 @@ http://www.templatemo.com/tm-514-magazee
   
   </body>
   </html>
+
+  <?php
+require_once ("config/config.php");
+require_once ("loggedin.php");
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+//yhteyden tarkistaminen
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+ 
+// määritys
+$AskelInput = mysqli_real_escape_string($link, $_REQUEST['Askel_Input']);
+$MatkaInput = mysqli_real_escape_string($link, $_REQUEST['Matka_Input']);
+$SykeInput = mysqli_real_escape_string($link, $_REQUEST['Syke_Input']);
+
+
+ 
+// Tiedot kantaan
+// https://stackoverflow.com/questions/27665285/how-to-update-user-database-for-current-user-login-in-php apuna
+$sql = "INSERT INTO Harjoitustiedot SET askeleet = '$AskelInput', matka = '$MatkaInput', syke = '$SykeInput' WHERE id = " . $_SESSION["id"];
+if(mysqli_query($link, $sql)){
+    header("location: Harjoitustiedot.php");
+} else{
+    echo "Virhe. Tietoja ei pystytty päivittää $sql. " . mysqli_error($link);
+}
+ 
+mysqli_close($link);
+
+}
+?>
