@@ -104,14 +104,12 @@ http://www.templatemo.com/tm-514-magazee
         <label for="leposyke">Leposyke</label>
         <input type="text" name="lepo_syke" id="leposyke">
     </p>
-
     <p>
         <label for="makssyke">Maksimisyke</label>
         <input type="text" name="maks_syke" id="makssyke">
     </p>
-
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Päivitä" class="btn btn-primary float-lg-right tm-md-align-center"></a>
 </form>
       </div>
     </div>
