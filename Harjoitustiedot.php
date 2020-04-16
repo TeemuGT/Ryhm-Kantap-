@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once ("config/config.php");
+require_once ("loggedin.php");
+//yhteyden tarkistaminen
+if($link === false){
+  die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$ID = $_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +85,7 @@ http://www.templatemo.com/tm-514-magazee
       </div>
     </div>
   </section>
+ 
   
   <!-- 2nd section -->
   <section class="row tm-section tm-col-md-reverse">
@@ -81,7 +93,7 @@ http://www.templatemo.com/tm-514-magazee
     <div class="tm-flex-center p-5">
       <div class="tm-md-flex-center">
         <h2 class="tm-text-color-primary mb-4">Kuinka paljon olet liikkunut?</h2>
-        <form>
+        <form method = "POST">
             <div class="form-group">
                 <input type="text" name="Askel_Input" class="form-control" id="AskelInput" placeholder="Askeleet (kpl)">
             </div>      
@@ -98,8 +110,26 @@ http://www.templatemo.com/tm-514-magazee
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
     <div class="tm-flex-center p-5 tm-bg-color-primary">
-      <div class="tm-max-w-400 tm-flex-center tm-flex-col">
-        <p class="tm-text-color-white small tm-font-thin mb-0">Nullam eleifend, ipsum eu aliquet fermentum , odio urna dignissim ante, semper maximus libero nisl non nibh.</p>
+      <div class="row tm-max-w-400 tm-flex-center tm-flex-col tm-text-color-white">
+       
+       <p class = "tm-text-color-white">
+      <?php
+      
+  $query = "SELECT id_mittaus, askeleet, matka, syke FROM Harjoitustiedot WHERE id_user = $ID";
+  $result = mysqli_query($link, $query) or die(mysqli_error($link));
+    echo "<table><tr><th>Harjoitus</th><th>Tuloksesi</th></tr>";
+  while($row = mysqli_fetch_assoc($result)) {   
+        
+        echo "<tr><td><br></td><td></td><br></tr>";
+        echo "<tr><td>Mittaus </td><td>" . $row["id_mittaus"] . "</td></tr>";
+        echo "<tr><td>Askeleet </td><td>" . $row["askeleet"] . "</td></tr>";
+        echo "<tr><td>Matka (km) </td><td>" . $row["matka"] . "</td></tr>";
+        echo "<tr><td>Syke </td><td>" . $row["syke"] . "</td></tr>";
+        echo "<tr><td><br></td><td></td><br></tr>";
+  }
+  echo "</table>";
+      ?>
+    </p>
       </div>
     </div>
   </div>
@@ -120,10 +150,11 @@ http://www.templatemo.com/tm-514-magazee
       </div>
     </div>
   </section>
+          
   
   <!-- 4th Section -->
   <section class="row tm-section tm-mb-30">
-   <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+   <div cl?ass="col-sm-12 col-md-12 col-lg-8 col-xl-8">
     <div class="tm-flex-center pl-5 pr-5 pt-5 pb-5">
       <div class="tm-md-flex-center">
        <h2 class="mb-4 tm-text-color-primary">Meidän sovellus</h2>
@@ -139,6 +170,7 @@ http://www.templatemo.com/tm-514-magazee
   </div>
   </section>
   
+        
   
   
   
@@ -170,15 +202,11 @@ http://www.templatemo.com/tm-514-magazee
   </html>
 
   <?php
-require_once ("config/config.php");
-require_once ("loggedin.php");
+
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
  
-//yhteyden tarkistaminen
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
+
  
 // määritys
 $AskelInput = mysqli_real_escape_string($link, $_REQUEST['Askel_Input']);
@@ -188,8 +216,7 @@ $SykeInput = mysqli_real_escape_string($link, $_REQUEST['Syke_Input']);
 
  
 // Tiedot kantaan
-// https://stackoverflow.com/questions/27665285/how-to-update-user-database-for-current-user-login-in-php apuna
-$sql = "INSERT INTO Harjoitustiedot SET askeleet = '$AskelInput', matka = '$MatkaInput', syke = '$SykeInput' WHERE id = " . $_SESSION["id"];
+$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$ID')";
 if(mysqli_query($link, $sql)){
     header("location: Harjoitustiedot.php");
 } else{
