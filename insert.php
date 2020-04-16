@@ -3,12 +3,6 @@ require_once ("require/loggedin.php");
 ?>
 
 
-
-<?php
-require_once ("require/loggedin.php");
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -242,6 +236,16 @@ if(mysqli_query($link, $sql)){
  
 mysqli_close($link);
 
+}
+?>
+
+<?php
+session_start();
+ 
+// Kirjautuneena sisään?
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
 ?>
 
