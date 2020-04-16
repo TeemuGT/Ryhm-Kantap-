@@ -133,7 +133,8 @@ http://www.templatemo.com/tm-514-magazee
         <input type="text" name="maks_syke" id="makssyke">
     </p>
     <br>
-    <input type="submit" value="Päivitä" class="btn btn-primary float-lg-right tm-md-align-center"></a>
+    <input type="submit" value="Päivitä" class="btn btn-primary"></a>
+    <a href="profiili.php" class="btn btn-primary">Palaa</a>
 </form>
       </div>
     </div>
