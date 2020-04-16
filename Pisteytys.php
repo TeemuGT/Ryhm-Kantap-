@@ -27,7 +27,7 @@
 
 if($pisteet >= 10.0){
     $pisteet-=10;
-    //echo '<script>alert("Welcome to Geeks for Geeks")</script>'; 
+    echo '<script>alert("POPUP")</script>'; 
     //myFunction();
 }else{
     return;
