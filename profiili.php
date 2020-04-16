@@ -8,16 +8,10 @@
 //https://www.php.net/manual/en/function.print-r.php
 //mysql_fetch_assoc doesm't print out a numeric index (0, 1, 2, ..) +  associative key.
 //https://stackoverflow.com/questions/2970936/how-to-echo-out-table-rows-from-the-db-php
-$query = "SELECT Etunimi, Sukunimi, Sukupuoli, ika, sahkoposti, paino, pituus, leposyke, makssyke FROM users WHERE id = " . $_SESSION["id"]; 
+$query = "SELECT * FROM users WHERE id = " . $_SESSION["id"]; 
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
-$row = mysqli_fetch_assoc($result);
-print "<pre>";
-print_r($row);
-print "<pre>";
-?>
-
-
-<!DOCTYPE html>
+while($row = mysqli_fetch_assoc($result)) { ?>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -26,9 +20,23 @@ print "<pre>";
 </head>
 <body>
     <div clas="box">
+        <div class=" tm-text-color-white nav-link" >
+            <h2><?php echo $row["Etunimi"]; ?></h2>
+            <h2><?php echo $row["Sukunimi"]; ?></h2>
+            <h2><?php echo $row["Sukupuoli"]; ?></h2>
+            <h2><?php echo $row["ika"]; ?></h2>
+            <h2><?php echo $row["sahkoposti"]; ?></h2>
+            <h2><?php echo $row["paino"]; ?></h2>
+            <h2><?php echo $row["pituus"]; ?></h2>
+            <h2><?php echo $row["makssyke"]; ?></h2>
+            <h2><?php echo $row["leposyke"]; ?></h2>
+        </div>
         <a class=" tm-text-color-white nav-link" href="insert.php">Asetukset</a>
         <a class=" tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
-</div>
+    </div>
 </body>
 </html>
+<?php } ?>
+
+
 
