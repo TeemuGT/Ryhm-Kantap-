@@ -115,16 +115,16 @@ http://www.templatemo.com/tm-514-magazee
        <p class = "tm-text-color-white">
       <?php
       
-  $query = "SELECT id_mittaus, askeleet, matka, syke FROM Harjoitustiedot WHERE id_user = $ID";
+  $query = "SELECT id_mittaus, aika, askeleet, matka, syke FROM Harjoitustiedot WHERE id_user = $ID";
   $result = mysqli_query($link, $query) or die(mysqli_error($link));
-    echo "<table><tr><th>Harjoitus</th><th>Tuloksesi</th></tr>";
+    echo "<table><tr><th>Kirjaus Aika </th><th>Harjoitus</th><th>Tuloksesi</th></tr>";
   while($row = mysqli_fetch_assoc($result)) {   
         
         echo "<tr><td><br></td><td></td><br></tr>";
-        echo "<tr><td>Mittaus </td><td>" . $row["id_mittaus"] . "</td></tr>";
-        echo "<tr><td>Askeleet </td><td>" . $row["askeleet"] . "</td></tr>";
-        echo "<tr><td>Matka (km) </td><td>" . $row["matka"] . "</td></tr>";
-        echo "<tr><td>Syke </td><td>" . $row["syke"] . "</td></tr>";
+        echo "<tr><td>". $row["aika"] . "</td><td>Mittaus </td><td>" . $row["id_mittaus"] . "</td></tr>";
+        echo "<tr><td>". " " . "<td>Askeleet </td><td>" . $row["askeleet"] . "</td></tr>";
+        echo "<tr><td>". " " . "<td>Matka (km) </td><td>" . $row["matka"] . "</td></tr>";
+        echo "<tr><td>". " " . "<td>Syke </td><td>" . $row["syke"] . "</td></tr>";
         echo "<tr><td><br></td><td></td><br></tr>";
   }
   echo "</table>";
