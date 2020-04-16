@@ -25,13 +25,13 @@
 
 
 
-//if($pisteet >= 10.0){
-    //$pisteet-10;
-    //echo '<script>alert("Welcome to Geeks for Geeks")</script>'; 
+if($pisteet >= 10.0){
+    $pisteet-=10;
+    echo '<script>alert("Welcome to Geeks for Geeks")</script>'; 
     //myFunction();
-//}else{
-  //  return;
-//}
+}else{
+    return;
+}
 
 
    // myFunction(){
