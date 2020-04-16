@@ -3,6 +3,12 @@ require_once ("require/loggedin.php");
 ?>
 
 
+
+<?php
+require_once ("require/loggedin.php");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,13 +49,13 @@ http://www.templatemo.com/tm-514-magazee
   <nav>
     <ul class="tm-bg-color-primary nav nav-pills nav-fill">
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
+        <a class="tm-text-color-white nav-link" href="Etusivu.html">Etusivu</a>
       </li>
       <li class="nav-item">
-        <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
+        <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Harjoitustiedot.html">Harjotustiedot</a>
+        <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjotustiedot</u></a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="#">Asetukset</a>
@@ -62,8 +68,26 @@ http://www.templatemo.com/tm-514-magazee
 
   <div class="container">
 
+    <!-- 1st section -->
+    <section class="row tm-section colo">
+     <div class="col-sm-12 col-md-18 col-lg-6 col-xl-6 p-0">
+      
+      <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
+        
+        <h1 class="tm-text-color-white tm-site-name">Harjoitustieto</h1>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      
+      <div class="tm-flex-center p-5">
+        <q class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
+        </q>
+      </div>
+    </div>
+  </section>
+  
  <!-- 2nd section -->
-  <section class="row tm-section tm-col-md-reverse">
+ <section class="row tm-section tm-col-md-reverse">
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
     <div class="tm-flex-center p-5">
       <div class="tm-md-flex-center">
@@ -118,6 +142,43 @@ http://www.templatemo.com/tm-514-magazee
   </div>
   </section>
   
+  <!-- 3rd Section -->
+  <section class="row tm-section tm-mb-30">
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0 text-center">
+      <img src="img/image-01.jpg" alt="Image" class="img-fluid">
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="tm-flex-center p-5">
+        <div class="tm-flex-center tm-flex-col">
+          <h2 class="tm-align-left">Loerm ipsum dolor sit amet</h2>
+          <p>This is one-page HTML5 template that you can use for any purpose. Please tell your friends about <a href="https://www.facebook.com/templatemo" target="_parent">TemplateMo</a> website. Thank you.</p>
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 4th Section -->
+  <section class="row tm-section tm-mb-30">
+   <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+    <div class="tm-flex-center pl-5 pr-5 pt-5 pb-5">
+      <div class="tm-md-flex-center">
+       <h2 class="mb-4 tm-text-color-primary">Meidän sovellus</h2>
+       <p>Voisimme tarinoda tähän jotakin?</p>
+       <p class="mb-4">Ja vähän lisää tarinaa?</p>
+       <p class="mb-4">Ja sitten veilä vähän lisää?</p>
+       <a href="#" class="btn btn-primary float-lg-right tm-md-align-center">Read More</a>
+     </div>
+   </div>
+  </div>
+  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 text-xl-right text-md-center text-center mt-5 mt-lg-0 pr-lg-0">
+   <img src="img/image-02.jpg" alt="Image" class="img-fluid">
+  </div>
+  </section>
+  
+  
+  
+  
   <!-- Footer -->
   <div class="row">
     <div class="col-lg-12">
@@ -170,6 +231,7 @@ $makssyke = mysqli_real_escape_string($link, $_REQUEST['maks_syke']);
 // Tiedot kantaan
 //id = " . $_SESSION["id"]; <--- päivittää kirjautuneen käyttäjän tiedot käyttäjän id:n perusteella (käyttäjänimi toimisi myyös)
 // https://stackoverflow.com/questions/27665285/how-to-update-user-database-for-current-user-login-in-php apuna
+//https://www.siteground.com/tutorials/php-mysql/display-table-data/
 $sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', ika = '$ika', paino = '$paino', pituus = '$pituus', leposyke = '$leposyke', makssyke = '$makssyke', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
 if(mysqli_query($link, $sql)){
     header("location: profiili.php");

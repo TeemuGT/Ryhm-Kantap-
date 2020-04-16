@@ -127,6 +127,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
     <div class="tm-max-w-400 tm-flex-center tm-flex-col">
       <img src="img/image-04.jpg" alt="Image" class="rounded-circle mb-4">
       <p class="tm-text-color-white small tm-font-thin mb-0">Nullam eleifend, ipsum eu aliquet fermentum , odio urna dignissim ante, semper maximus libero nisl non nibh.</p>
+      <a href="insert.php" class="btn btn-primary">Muuta tietoja</a> <br>
     </div>
   </div>
 </div>
