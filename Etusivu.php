@@ -1,12 +1,23 @@
+<?php 
+session_start();
+require_once ("config/config.php");
+require_once ("loggedin.php");
 
+//yhteyden tarkistaminen
+if($link === false){
+  die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$ID = $_SESSION['id'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Magazee HTML5 Template Mo</title>
+  
+  <title>Etusivu</title>
 <!-- 
 Magazee Template 
 http://www.templatemo.com/tm-514-magazee
@@ -40,7 +51,7 @@ http://www.templatemo.com/tm-514-magazee
 <nav>
   <ul class="tm-bg-color-primary nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Etusivu.html"><u>Etusivu</u></a>
+      <a class="tm-text-color-white nav-link" href="Etusivu.php"><u>Etusivu</u></a>
     </li>
     <li class="nav-item">
       <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
@@ -56,7 +67,9 @@ http://www.templatemo.com/tm-514-magazee
     </li>
   </ul>
   </nav>
- 
+ <?php
+ include 'Pisteytys.php'
+ ?>
 
 
  <div class="container">
@@ -71,7 +84,7 @@ http://www.templatemo.com/tm-514-magazee
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-    <p class="tm-quote tm-text-color-gray">Pisteesi on tällähetkellä: </p>
+    <p class="tm-quote tm-text-color-gray">Pisteesi on tällähetkellä: <?php echo $pisteet ?> </p>
     <div class="tm-flex-center p-5">
       <p class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
       </p>

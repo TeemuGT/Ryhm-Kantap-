@@ -49,7 +49,7 @@ http://www.templatemo.com/tm-514-magazee
   <nav>
     <ul class="tm-bg-color-primary nav nav-pills nav-fill">
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Etusivu.html">Etusivu</a>
+        <a class="tm-text-color-white nav-link" href="Etusivu.php">Etusivu</a>
       </li>
       <li class="nav-item">
         <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
@@ -95,29 +95,17 @@ http://www.templatemo.com/tm-514-magazee
         <h2 class="tm-text-color-primary mb-4">Kuinka paljon olet liikkunut?</h2>
         <form method = "POST">
             <div class="form-group">
-                <input type="text" name="Askel_Input" class="form-control" id="AskelInput" placeholder="Askeleet (kpl)">
+                <input type="number" min="1" max="40000" name="Askel_Input" class="form-control" id="AskelInput" placeholder="Askeleet (kpl)">
             </div>      
             <div class="form-group">
-                <input type="text" name="Matka_Input" class="form-control" id="MatkaInput" placeholder="Matka (km)">
+                <input type="number" min="0.1" max="500" step="0.1" name="Matka_Input" class="form-control" id="MatkaInput" placeholder="Matka (km)">
             </div> 
             <div class="form-group">
-                <input type="text" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
+                <input type="number" min=30 max="200" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
             </div> 
             <input class="btn-primary" type="submit" value="submit">
          </form>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
-    <div class="tm-flex-center p-5 tm-bg-color-primary">
-      <div class="row tm-max-w-400 tm-flex-center tm-flex-col tm-text-color-white">
-       
-      </div>
-    </div>
-  </div>
-  </section>
-  
-  <?php
+         <?php
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -143,6 +131,45 @@ mysqli_close($link);
 
 }
 ?>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
+    <div class="tm-flex-center p-5 tm-bg-color-primary">
+      
+      <div class="row tm-max-w-400 tm-flex-center tm-flex-col tm-text-color-white">
+      <p class = tm-text-color-white> Harjoittelusi kokonaismäärä ja sykkeen keskiarvo </p>
+      <?php
+      $query = "SELECT id_mittaus, askeleet, matka, syke FROM Harjoitustiedot WHERE id_user = $ID";
+      $result = mysqli_query($link, $query) or die(mysqli_error($link));
+        $kaskel = 0;
+        $kmatka = 0;
+        $ksyke;
+        $mittaus;
+        $asyke;
+      while($row = mysqli_fetch_assoc($result)) {   
+            
+            $kaskel+=$row['askeleet']; 
+            $kmatka+=$row['matka'];
+            $ksyke+=$row['syke'];
+            $mittaus+=1;
+
+      }
+        
+        $asyke = $ksyke/$mittaus;
+        echo "<table style='width:100%; height:75%;  border: solid 4px white;'><tr><th>Harjoite </th><th> Määrä </th></tr>";
+        echo "<tr style='border: solid 1px'><td>Askelten määrä</td><td  style='border: solid 1px';>" . $kaskel . " kpl</td></tr>";
+        echo "<tr><td>Kuljettu matka</td><td>" . $kmatka . " km</td></tr>";
+        echo "<tr style='border: solid 1px'><td>Sykkeen keskiarvo</td><td>" . $asyke . "</td></tr>";
+        
+        echo "</table>";
+          ?>
+      </div>
+    </div>
+  </div>
+  </section>
+  
+ 
           
   
   <!-- 4th Section -->
