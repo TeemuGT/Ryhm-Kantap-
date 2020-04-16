@@ -170,6 +170,7 @@ $makssyke = mysqli_real_escape_string($link, $_REQUEST['maks_syke']);
 
  
 // Tiedot kantaan
+//id = " . $_SESSION["id"]; <--- päivittää kirjautuneen käyttäjän tiedot käyttäjän id:n perusteella (käyttäjänimi toimisi myyös)
 // https://stackoverflow.com/questions/27665285/how-to-update-user-database-for-current-user-login-in-php apuna
 $sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', ika = '$ika', paino = '$paino', pituus = '$pituus', leposyke = '$leposyke', makssyke = '$makssyke', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
 if(mysqli_query($link, $sql)){
