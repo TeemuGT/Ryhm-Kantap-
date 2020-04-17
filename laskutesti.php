@@ -12,7 +12,7 @@ $id = $_SESSION['id'];
 
 <?php
 // laskukaavat perustuvat UKK:n liikuntasuosituksiin + sykerajasuosituksiin
-// muuten itse luotu koodi
+// jos ei syötä minuutteja ja syketietoja niin antaa pisteitä x määrän per 1000 askelta esim?
 $query = "SELECT * FROM users WHERE id = $id";
   $result = mysqli_query($link, $query) or die(mysqli_error($link));
   while($rivi = mysqli_fetch_assoc($result)) {   
@@ -28,6 +28,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
         $tulos = $row["syke"];
         $pisteet = $row["pisteet"];
         $minuutit = $row["minuutit"];
+        $askeleet = $row["askeleet"];
         
   }
 
@@ -35,7 +36,16 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
   $reipas_ala = ($makssyke - $leposyke) * (61/100) + $leposyke ;
   $raskas_ala = ($makssyke - $leposyke) * (71/100) + $leposyke ;
 
-  if( $tulos < $kevyt_yla && $tulos < $reipas_ala ){
+  if( $tulos == 0){
+
+    $lasku = $askeleet * 0.25 ;
+    $piste = $pisteet + $lasku ;
+
+    $direct_text = 'Ansaitut pisteet = ';
+     
+    print ($direct_text . $piste); 
+
+  } else if (0 < $tulos && $tulos < $reipas_ala){
 
     $lasku1 = $minuutit * 0.5 ;
     $piste_yksi = $pisteet + $lasku1 ;
@@ -53,7 +63,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
     
     print ($direct_text . $piste_kaksi); 
 
-  } else if ($raskas_ala < $tulos){
+  } else {
 
     $lasku3 = $minuutit * 1.5 ;  
     $piste_kolme = $pisteet + $lasku3 ;
@@ -61,12 +71,5 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
     $direct_text = 'Ansaitut pisteet = ';
      
     print ($direct_text . $piste_kolme); 
-
-  } else {
-
-    $direct_text = 'Ei lisättyjä pisteitä ';
-     
-    print ($direct_text); 
-
   }
       ?>
