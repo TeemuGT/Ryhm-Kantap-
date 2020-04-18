@@ -52,16 +52,16 @@ http://www.templatemo.com/tm-514-magazee
         <a class="tm-text-color-white nav-link" href="Etusivu.php">Etusivu</a>
       </li>
       <li class="nav-item">
-        <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
+        <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjotustiedot</u></a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Pisteytys.php">Asetukset</a>
+        <a class="tm-text-color-white nav-link" href="laskutesti.php">Laskut</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
+        <a class="tm-text-color-white nav-link" href="require/logout.php">Kirjaudu ulos</a>
       </li>
     </ul>
     </nav>
@@ -103,6 +103,9 @@ http://www.templatemo.com/tm-514-magazee
             <div class="form-group">
                 <input type="number" min=30 max="200" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
             </div> 
+            <div class="form-group">
+                <input type="number" min=30 max="200" name="harjoitus_Input" class="form-control" id="HarjoitusInput" placeholder="Harjoitusaika (min)">
+            </div> 
             <input class="btn-primary" type="submit" value="submit">
          </form>
          <?php
@@ -116,11 +119,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 $AskelInput = mysqli_real_escape_string($link, $_REQUEST['Askel_Input']);
 $MatkaInput = mysqli_real_escape_string($link, $_REQUEST['Matka_Input']);
 $SykeInput = mysqli_real_escape_string($link, $_REQUEST['Syke_Input']);
+$HarjoitusInput = mysqli_real_escape_string($link, $_REQUEST['harjoitus_Input']);
 
 
  
 // Tiedot kantaan
-$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$ID')";
+$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, minuutit, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$HarjoitusInput', '$ID')";
 if(mysqli_query($link, $sql)){
     header("location: Harjoitustiedot.php");
 } else{

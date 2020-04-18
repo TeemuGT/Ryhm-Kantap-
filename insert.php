@@ -43,19 +43,19 @@ http://www.templatemo.com/tm-514-magazee
   <nav>
     <ul class="tm-bg-color-primary nav nav-pills nav-fill">
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Etusivu.html">Etusivu</a>
+        <a class="tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
       </li>
       <li class="nav-item">
-        <a class=" tm-text-color-white nav-link" href="#">Profiili</a>
+        <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjotustiedot</u></a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="#">Asetukset</a>
+        <a class="tm-text-color-white nav-link" href="#">Yhteystiedot</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
+        <a class="tm-text-color-white nav-link" href="require/logout.php">Kirjaudu ulos</a>
       </li>
     </ul>
     </nav>
@@ -68,7 +68,7 @@ http://www.templatemo.com/tm-514-magazee
       
       <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
         
-        <h1 class="tm-text-color-white tm-site-name">Harjoitustieto</h1>
+        <h1 class="tm-text-color-white tm-site-name">Tietojen päivittäminen</h1>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -88,7 +88,6 @@ http://www.templatemo.com/tm-514-magazee
         <h2 class="tm-text-color-primary mb-4"></h2>
         <form action="insert.php" method="post">
 <div class="tm-flex-center p-5">
-        <h1>Käyttäjän <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> profiilitiedot</h1>
     </div>
     <p>
         <label for="etunimi">Etunimi</label>

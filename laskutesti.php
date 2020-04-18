@@ -36,7 +36,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
   $reipas_ala = ($makssyke - $leposyke) * (61/100) + $leposyke ;
   $raskas_ala = ($makssyke - $leposyke) * (71/100) + $leposyke ;
 
-  if( $tulos == 0){
+     if( $tulos == 0){
 
     $lasku = $askeleet * 0.25 ;
     $piste = $pisteet + $lasku ;

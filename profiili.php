@@ -54,13 +54,13 @@ http://www.templatemo.com/tm-514-magazee
 <nav>
   <ul class="tm-bg-color-primary nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="index.html">Etusivu</a>
+      <a class="tm-text-color-white nav-link" href="etusivu.phpl">Etusivu</a>
     </li>
     <li class="nav-item">
       <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.html">Harjotustiedot</a>
+      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjotustiedot</a>
     </li>
     <li class="nav-item">
       <a class="tm-text-color-white nav-link" href="#">Yhteystiedot</a>
