@@ -22,6 +22,7 @@ $query = "SELECT * FROM users WHERE id = $id";
       ?>
 
 <?php
+//$sql = "UPDATE Harjoitustiedot SET pisteet = '$uudetpisteet' WHERE id = '$id' ORDER BY aika DESC LIMIT 1"; (pisteet kantaan)
 $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
   $result = mysqli_query($link, $query) or die(mysqli_error($link));
   while($row = mysqli_fetch_assoc($result)) {   
@@ -38,7 +39,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
 
      if( $tulos == 0){
 
-    $lasku = $askeleet * 0.25 ;
+    $lasku = $askeleet * 0.0015 ;
     $piste = $pisteet + $lasku ;
 
     $direct_text = 'Ansaitut pisteet = ';
@@ -47,7 +48,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
 
   } else if (0 < $tulos && $tulos < $reipas_ala){
 
-    $lasku1 = $minuutit * 0.5 ;
+    $lasku1 = $minuutit * 0.32 ;
     $piste_yksi = $pisteet + $lasku1 ;
 
     $direct_text = 'Ansaitut pisteet = ';
@@ -56,7 +57,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
 
   } else if ($reipas_ala < $tulos && $tulos < $raskas_ala){
 
-    $lasku2 = $minuutit * 1 ;
+    $lasku2 = $minuutit * 0.67 ;
     $piste_kaksi = $pisteet + $lasku2;
 
     $direct_text = 'Ansaitut pisteet = ';
@@ -65,7 +66,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
 
   } else {
 
-    $lasku3 = $minuutit * 1.5 ;  
+    $lasku3 = $minuutit * 1.35 ;  
     $piste_kolme = $pisteet + $lasku3 ;
 
     $direct_text = 'Ansaitut pisteet = ';
