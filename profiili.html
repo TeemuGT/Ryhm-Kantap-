@@ -1,4 +1,10 @@
 <?php
+require_once ("require/loggedin.php");
+require_once ("config/config.php")
+?>
+
+
+<?php
 session_start();
  
 // Kirjautuneena sisään?
@@ -6,10 +12,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-?>
-
-<?php 
-require_once ("laskutesti.php");
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +54,7 @@ http://www.templatemo.com/tm-514-magazee
 <nav>
   <ul class="tm-bg-color-primary nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
+      <a class="tm-text-color-white nav-link" href="etusivu.phpl">Etusivu</a>
     </li>
     <li class="nav-item">
       <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
@@ -64,7 +66,7 @@ http://www.templatemo.com/tm-514-magazee
       <a class="tm-text-color-white nav-link" href="#">Yhteystiedot</a>
     </li>
     <li class="nav-item">
-      <a href="require/logout.php" class="tm-text-color-white nav-link">Kirjaudu ulos</a>>
+      <a href="logout.php" class="tm-text-color-white nav-link">Kirjaudu ulos</a>>
     </li>
   </ul>
   </nav>
@@ -75,11 +77,13 @@ http://www.templatemo.com/tm-514-magazee
 
   <!-- 1st section -->
   <section class="row tm-section colo">
-   <div class="col-sm-12 col-md-18 col-lg-6 col-xl-6 p-0">
-    
-    <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
-      
-      <h1 class="tm-text-color-white tm-site-name">Ryhmä Kantapää Projekti</h1>
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="tm-flex-center p-5">
+          <div class="tm-md-flex-center">
+      <p class="mb-4">Sukunimi: <?php echo $row["Sukunimi"]; ?></p>
+      <p class="mb-4">Sukupuoli: <?php echo $row["sukupuoli"]; ?></p>
+      <p class="mb-4">Ikä: <?php echo $row["ika"]; ?></p>
+      <a href="insert.php" class="btn btn-primary float-lg-right tm-md-align-center">Päivitä tietoja</a></h1>
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -91,62 +95,44 @@ http://www.templatemo.com/tm-514-magazee
 </section>
 
 <!-- 2nd section -->
+
+<?php
+
+//kirjautuneen käyttäjän tietoja 
+//https://www.php.net/manual/en/function.print-r.php
+//mysql_fetch_assoc doesm't print out a numeric index (0, 1, 2, ..) +  associative key.
+//https://stackoverflow.com/questions/2970936/how-to-echo-out-table-rows-from-the-db-php
+//https://stackoverflow.com/questions/27431601/how-to-echo-the-row-into-my-html
+
+
+$query = "SELECT * FROM users WHERE id = " . $_SESSION["id"]; 
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+while($row = mysqli_fetch_assoc($result)) { ?>
 <section class="row tm-section tm-col-md-reverse">
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
   <div class="tm-flex-center p-5">
     <div class="tm-md-flex-center">
-      <h2 class="tm-text-color-primary mb-4"><?php  if( $tulos == 0){
-
-$lasku = $askeleet * 0.0015 ;
-$piste = $pisteet + $lasku ;
-
-$direct_text = 'Ansaitut pisteet = ';
- 
-print ($direct_text . $piste); 
-
-} else if (0 < $tulos && $tulos < $reipas_ala){
-
-$lasku1 = $minuutit * 0.32 ;
-$piste_yksi = $pisteet + $lasku1 ;
-
-$direct_text = 'Ansaitut pisteet = ';
- 
-print ($direct_text . $piste_yksi); 
-
-} else if ($reipas_ala < $tulos && $tulos < $raskas_ala){
-
-$lasku2 = $minuutit * 0.67 ;
-$piste_kaksi = $pisteet + $lasku2;
-
-$direct_text = 'Ansaitut pisteet = ';
-
-print ($direct_text . $piste_kaksi); 
-
-} else {
-
-$lasku3 = $minuutit * 1.35 ;  
-$piste_kolme = $pisteet + $lasku3 ;
-
-$direct_text = 'Ansaitut pisteet = ';
- 
-print ($direct_text . $piste_kolme); 
-} ?> 
-
-</h2>
-      <p class="mb-4">Pellentesque sagittis feugiat massa, vitae blandit elit dictum in. Nam eleifend nunc dui, sed cusus justo molestie id. Vestibulum vel sagittis justo.</p>
-      <a href="#" class="btn btn-primary float-lg-right tm-md-align-center">Read more</a>
+    <h1 class="tm-text-color-white tm-site-name"><h1><?php echo htmlspecialchars($_SESSION["username"]); //kirjautunut käyttäjä ?></h1>
+      <p class="mb-4">Etunimi: <?php echo $row["Etunimi"];  ?></p>
+      <p class="mb-4">Sukunimi: <?php echo $row["Sukunimi"]; ?></p>
+      <p class="mb-4">Sukupuoli: <?php echo $row["sukupuoli"]; ?></p>
+      <p class="mb-4">Ikä: <?php echo $row["ika"]; ?></p>
+      <a href="insert.php" class="btn btn-primary float-lg-right tm-md-align-center">Päivitä tietoja</a>
     </div>
   </div>
 </div>
 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
   <div class="tm-flex-center p-5 tm-bg-color-primary">
-    <div class="tm-max-w-400 tm-flex-center tm-flex-col">
-      <img src="img/image-04.jpg" alt="Image" class="rounded-circle mb-4">
-      <p class="tm-text-color-white small tm-font-thin mb-0">Nullam eleifend, ipsum eu aliquet fermentum , odio urna dignissim ante, semper maximus libero nisl non nibh.</p>
+    <div class="tm-md-flex-center">
+      <p class="tm-text-color-white">Paino: <?php echo $row["paino"]; ?></p>
+      <p class="tm-text-color-white">Pituus: <?php echo $row["pituus"]; ?></p>
+      <p class="tm-text-color-white">Leposyke: <?php echo $row["leposyke"]; ?></p>
+      <p class="tm-text-color-white">Maksimisyke: <?php echo $row["makssyke"]; ?></p>
     </div>
   </div>
 </div>
 </section>
+<?php } ?>
 
 <!-- 3rd Section -->
 <section class="row tm-section tm-mb-30">
@@ -211,44 +197,3 @@ print ($direct_text . $piste_kolme);
 
 </body>
 </html>
-
-<?php
-session_start();
-require_once ("config/config.php");
-require_once ("require/loggedin.php");
-//yhteyden tarkistaminen
-if($link === false){
-  die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-$id = $_SESSION['id'];
-?>
-
-<?php
-// laskukaavat perustuvat UKK:n liikuntasuosituksiin + sykerajasuosituksiin
-// jos ei syötä minuutteja ja syketietoja niin antaa pisteitä x määrän per 1000 askelta esim?
-$query = "SELECT * FROM users WHERE id = $id";
-  $result = mysqli_query($link, $query) or die(mysqli_error($link));
-  while($rivi = mysqli_fetch_assoc($result)) {   
-        $makssyke = $rivi["makssyke"];
-        $leposyke = $rivi["leposyke"];             
-  }
-      ?>
-
-<?php
-//$sql = "UPDATE Harjoitustiedot SET pisteet = '$uudetpisteet' WHERE id = '$id' ORDER BY aika DESC LIMIT 1"; (pisteet kantaan)
-$query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
-  $result = mysqli_query($link, $query) or die(mysqli_error($link));
-  while($row = mysqli_fetch_assoc($result)) {   
-        $tulos = $row["syke"];
-        $pisteet = $row["pisteet"];
-        $minuutit = $row["minuutit"];
-        $askeleet = $row["askeleet"];
-        
-  }
-
-  $kevyt_yla = ($makssyke - $leposyke) * (60/100) + $leposyke ;
-  $reipas_ala = ($makssyke - $leposyke) * (61/100) + $leposyke ;
-  $raskas_ala = ($makssyke - $leposyke) * (71/100) + $leposyke ;
-
-  ?>

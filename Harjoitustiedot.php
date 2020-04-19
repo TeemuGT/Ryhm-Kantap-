@@ -49,7 +49,7 @@ http://www.templatemo.com/tm-514-magazee
   <nav>
     <ul class="tm-bg-color-primary nav nav-pills nav-fill">
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Etusivu.php">Etusivu</a>
+        <a class="tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
       </li>
       <li class="nav-item">
         <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
@@ -104,7 +104,7 @@ http://www.templatemo.com/tm-514-magazee
                 <input type="number" min=30 max="200" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
             </div> 
             <div class="form-group">
-                <input type="number" min=30 max="200" name="harjoitus_Input" class="form-control" id="HarjoitusInput" placeholder="Harjoitusaika (min)">
+                <input type="number" min=1 max="200" name="harjoitus_Input" class="form-control" id="HarjoitusInput" placeholder="Harjoitusaika (min)">
             </div> 
             <input class="btn-primary" type="submit" value="submit">
          </form>
