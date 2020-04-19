@@ -54,7 +54,7 @@ http://www.templatemo.com/tm-514-magazee
       <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjotustiedot</a>
+      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjoitustiedot</a>
     </li>
     <li class="nav-item">
       <a class="tm-text-color-white nav-link" href="#">Yhteystiedot</a>
@@ -75,7 +75,7 @@ http://www.templatemo.com/tm-514-magazee
     
     <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
       
-      <h1 class="tm-text-color-white tm-site-name">Ryhmä Kantapää Projekti</h1>
+      <h1 class="tm-text-color-white tm-site-name">Ryhmä Kantapään Projekti</h1>
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -92,9 +92,7 @@ http://www.templatemo.com/tm-514-magazee
   <div class="tm-flex-center p-5">
     <div class="tm-md-flex-center">
       <h1 class="tm-text-color-primary mb-4">Ready. Set. GO!</h1>
-      <p class="mb-4"><?php 
-require_once ("laskutesti.php");
-?>
+      <p class="mb-4"><?php require_once ("require/laskutesti.php");?>
 
     </div>
   </div>
@@ -172,3 +170,4 @@ require_once ("laskutesti.php");
 
 </body>
 </html>
+
