@@ -58,7 +58,7 @@ http://www.templatemo.com/tm-514-magazee
         <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjoitustiedot</u></a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="laskutesti.php">Laskut</a>
+        <a class="tm-text-color-white nav-link" href="#">Yhteystiedot/a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="require/logout.php">Kirjaudu ulos</a>

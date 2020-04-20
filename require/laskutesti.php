@@ -42,7 +42,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
     $lasku = $askeleet * 0.0015 ;
     $piste = $pisteet + $lasku ;
 
-    $direct_text = 'Ansaitut pisteet = ';
+    $direct_text = 'Ansaitut pisteet: ';
      
     print ($direct_text . $piste); 
 
@@ -51,7 +51,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
     $lasku1 = $minuutit * 0.32 ;
     $piste_yksi = $pisteet + $lasku1 ;
 
-    $direct_text = 'Ansaitut pisteet = ';
+    $direct_text = 'Ansaitut pisteet: ';
      
     print ($direct_text . $piste_yksi); 
 
@@ -60,7 +60,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
     $lasku2 = $minuutit * 0.67 ;
     $piste_kaksi = $pisteet + $lasku2;
 
-    $direct_text = 'Ansaitut pisteet = ';
+    $direct_text = 'Ansaitut pisteet: ';
     
     print ($direct_text . $piste_kaksi); 
 
@@ -69,7 +69,7 @@ $query = "SELECT * FROM Harjoitustiedot WHERE id_user = $id";
     $lasku3 = $minuutit * 1.35 ;  
     $piste_kolme = $pisteet + $lasku3 ;
 
-    $direct_text = 'Ansaitut pisteet = ';
+    $direct_text = 'Ansaitut pisteet: ';
      
     print ($direct_text . $piste_kolme); 
   }
