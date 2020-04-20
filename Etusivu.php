@@ -14,8 +14,8 @@ $ID = $_SESSION['id'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title>Etusivu</title>
 <!-- 
@@ -84,7 +84,7 @@ http://www.templatemo.com/tm-514-magazee
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-    <p class="tm-quote tm-text-color-gray">Pisteesi on tällähetkellä: <?php echo $pisteet ?> </p>
+    <p class="tm-quote tm-text-color-gray">Pisteesi on tällähetkellä: <?php echo $Piste ?> </p>
     <div class="tm-flex-center p-5">
       <p class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
       </p>
@@ -101,7 +101,7 @@ http://www.templatemo.com/tm-514-magazee
     <div class="tm-md-flex-center">
       <h2 class="tm-text-color-primary mb-4">Harjoitus tiedot</h2>
       <p class="mb-4">Sovelluksella on tarkoitus kerätä ja seurata omaa liikkumistasi ja harjoitus sivulla pystyt itse lisäämään liikkumista ja seuraamaan sitä.</p>
-      <a href="Harjoitustiedot.html" class="btn btn-primary float-lg-right tm-md-align-center">Kirjaa liikkumisesi</a>
+      <a href="Harjoitustiedot.php" class="btn btn-primary float-lg-right tm-md-align-center">Kirjaa liikkumisesi</a>
     </div>
   </div>
 </div>

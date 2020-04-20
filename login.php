@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;                            
                             
                             // Etusivulle
-                            header("location: Etusivu.html");
+                            header("location: Etusivu.php");
                         } else{
                             $password_err = "Syöttämäsi salasana on virheellinen.";
                         }

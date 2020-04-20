@@ -116,11 +116,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 $AskelInput = mysqli_real_escape_string($link, $_REQUEST['Askel_Input']);
 $MatkaInput = mysqli_real_escape_string($link, $_REQUEST['Matka_Input']);
 $SykeInput = mysqli_real_escape_string($link, $_REQUEST['Syke_Input']);
-
+$Pisteytys = $AskelInput/1000;
 
  
 // Tiedot kantaan
-$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$ID')";
+$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, Pisteytys, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$Pisteytys', '$ID')";
 if(mysqli_query($link, $sql)){
     header("location: Harjoitustiedot.php");
 } else{
@@ -144,9 +144,9 @@ mysqli_close($link);
       $result = mysqli_query($link, $query) or die(mysqli_error($link));
         $kaskel = 0;
         $kmatka = 0;
-        $ksyke;
-        $mittaus;
-        $asyke;
+        $ksyke = 0;
+        $mittaus = 0;
+        $asyke = 0;
       while($row = mysqli_fetch_assoc($result)) {   
             
             $kaskel+=$row['askeleet']; 
@@ -155,12 +155,13 @@ mysqli_close($link);
             $mittaus+=1;
 
       }
-        
+        if($ksyke > 0){
         $asyke = $ksyke/$mittaus;
+        }
         echo "<table style='width:100%; height:75%;  border: solid 4px white;'><tr><th>Harjoite </th><th> Määrä </th></tr>";
-        echo "<tr style='border: solid 1px'><td>Askelten määrä</td><td  style='border: solid 1px';>" . $kaskel . " kpl</td></tr>";
+        echo "<tr style='border: solid 1px'><td>Askelten määrä</td><td>" . $kaskel . " kpl</td></tr>";
         echo "<tr><td>Kuljettu matka</td><td>" . $kmatka . " km</td></tr>";
-        echo "<tr style='border: solid 1px'><td>Sykkeen keskiarvo</td><td>" . $asyke . "</td></tr>";
+        echo "<tr style='border: solid 1px'><td>Sykkeen keskiarvo</td><td type='number; step=0.1;'>" . $asyke . "</td></tr>";
         
         echo "</table>";
           ?>
@@ -178,16 +179,16 @@ mysqli_close($link);
     
    <p>
       <?php
-      
+      $maara;
   $query = "SELECT id_mittaus, aika, askeleet, matka, syke FROM Harjoitustiedot WHERE id_user = $ID";
   $result = mysqli_query($link, $query) or die(mysqli_error($link));
     echo "<table style='width:100%;border: solid 4px white;'><tr><th>Kirjaus Aika </th><th>Harjoitus</th><th>Tuloksesi</th></tr>";
   while($row = mysqli_fetch_assoc($result)) {   
-        
+        $maara+=1;
         echo "<tr style='border: solid 1px ;'><td><br></td><td></td><td></td></tr>";
-        echo "<tr><td>". $row["aika"] . "</td><td>Mittaus </td><td>" . $row["id_mittaus"] . "</td></tr>";
-        echo "<tr><td>". " " . "<td>Askeleet </td><td>" . $row["askeleet"] . "</td></tr>";
-        echo "<tr><td>". " " . "<td>Matka (km) </td><td>" . $row["matka"] . "</td></tr>";
+        echo "<tr><td>". $row["aika"] . "</td><td>Mittaus </td><td>" . $maara . "</td></tr>";
+        echo "<tr><td>". " " . "<td>Askeleet </td><td>" . $row["askeleet"] . " kpl</td></tr>";
+        echo "<tr><td>". " " . "<td>Matka (km) </td><td>" . $row["matka"] . " km</td></tr>";
         echo "<tr><td>". " " . "<td>Syke </td><td>" . $row["syke"] . "</td></tr>";
   }
   echo "</table>";

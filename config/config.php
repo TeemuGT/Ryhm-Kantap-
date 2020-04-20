@@ -1,7 +1,7 @@
 <?php
 //tietokanta
 define('DB_SERVER', 'mysql.metropolia.fi');
-define('DB_USERNAME', '  ');
+define('DB_USERNAME', 'lauraemi');
 define('DB_PASSWORD', 'Hilppa123');
 define('DB_NAME', 'lauraemi');
  
