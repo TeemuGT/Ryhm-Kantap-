@@ -9,8 +9,7 @@
 
 <body>
 <?php
-$Piste=0;
-$query = "SELECT Pisteytys FROM Harjoitustiedot WHERE id_user = $ID";
+$query = "SELECT Pisteytys FROM users WHERE id = $ID";
       $result = mysqli_query($link, $query) or die(mysqli_error($link));
       while($row = mysqli_fetch_assoc($result)) {
       $Piste += $row['Pisteytys'];

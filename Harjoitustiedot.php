@@ -108,28 +108,41 @@ http://www.templatemo.com/tm-514-magazee
          <?php
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
- 
 
- 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  
+       
 // määritys
 $AskelInput = mysqli_real_escape_string($link, $_REQUEST['Askel_Input']);
 $MatkaInput = mysqli_real_escape_string($link, $_REQUEST['Matka_Input']);
 $SykeInput = mysqli_real_escape_string($link, $_REQUEST['Syke_Input']);
 $Pisteytys = $AskelInput/1000;
 
- 
+ $query = "SELECT Pisteytys FROM users WHERE id = $ID";
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+while($row = mysqli_fetch_assoc($result)) {
+  $Pisteytys += $row['Pisteytys'];
+  }
+
+
 // Tiedot kantaan
-$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, Pisteytys, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$Pisteytys', '$ID')";
+$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$ID')";
 if(mysqli_query($link, $sql)){
-    header("location: Harjoitustiedot.php");
-} else{
+  $sql = "UPDATE users SET Pisteytys='$Pisteytys' WHERE id = $ID";
+  if(mysqli_query($link, $sql)){
+
+  
+  header("location: Harjoitustiedot.php");
+}} else{
     echo "Virhe. Tietoja ei pystytty päivittää $sql. " . mysqli_error($link);
 }
  
 mysqli_close($link);
 
 }
+
+
+
 ?>
       </div>
     </div>
