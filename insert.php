@@ -1,23 +1,20 @@
-<?php 
+<?php
 session_start();
-require_once ("config/config.php");
-require_once ("loggedin.php");
-
-//yhteyden tarkistaminen
-if($link === false){
-  die("ERROR: Could not connect. " . mysqli_connect_error());
+ 
+// Kirjautuneena sisään?
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
-
-$ID = $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>Etusivu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Magazee HTML5 Template Mo</title>
 <!-- 
 Magazee Template 
 http://www.templatemo.com/tm-514-magazee
@@ -51,25 +48,23 @@ http://www.templatemo.com/tm-514-magazee
 <nav>
   <ul class="tm-bg-color-primary nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Etusivu.php"><u>Etusivu</u></a>
+      <a class="tm-text-color-white nav-link" href="etusivu.php">Etusivu</a>
     </li>
     <li class="nav-item">
       <a class=" tm-text-color-white nav-link" href="Profiili.php">Profiili</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjotustiedot</a>
+      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjoitustiedot</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="#">Asetukset</a>
+      <a class="tm-text-color-white nav-link" href="#">Yhteystiedot</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
+      <a href="require/logout.php" class="tm-text-color-white nav-link">Kirjaudu ulos</a>>
     </li>
   </ul>
   </nav>
- <?php
- include 'Pisteytys.php'
- ?>
+ 
 
 
  <div class="container">
@@ -80,36 +75,61 @@ http://www.templatemo.com/tm-514-magazee
     
     <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
       
-      <h1 class="tm-text-color-white tm-site-name">Ryhmä Kantapää Projekti</h1>
+      <h3 class="tm-text-color-white tm-site-name">Käyttäjätietojen päivittäminen</h3>
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-    <p class="tm-quote tm-text-color-gray">Pisteesi on tällähetkellä: <?php echo $Piste ?> </p>
-    <div class="tm-flex-center p-5">
-      <p class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
-      </p>
-      
-    </div>
     
+    <div class="tm-flex-center p-5">
+    </div>
   </div>
 </section>
+  
 
 <!-- 2nd section -->
 <section class="row tm-section tm-col-md-reverse">
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
   <div class="tm-flex-center p-5">
     <div class="tm-md-flex-center">
-      <h2 class="tm-text-color-primary mb-4">Harjoitus tiedot</h2>
-      <p class="mb-4">Sovelluksella on tarkoitus kerätä ja seurata omaa liikkumistasi ja harjoitus sivulla pystyt itse lisäämään liikkumista ja seuraamaan sitä.</p>
-      <a href="Harjoitustiedot.php" class="btn btn-primary float-lg-right tm-md-align-center">Kirjaa liikkumisesi</a>
+      <p class="mb-4"><form action="insert.php" method="post">
+<div class="tm-flex-center p-5">
+    </div>
+    <p>Täytäthän kaikki lomakkeen kentät ennen "Päivitä" - painikkeen painamista.</p>
+    <p> <input type="text" class="form-control" placeholder= "Etunimi" name="etu_nimi" id="etunimi"></p>
+
+    <p><input type="text" class="form-control" placeholder="Sukunimi" name="suku_nimi" id="sukunimi"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Sukupuoli" name="suku_puoli" id="sukupuoli"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Ikä" name="nyk_ika" id="ika"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Sähköpostiosoite" name="sapo" id="sahkoposti"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Paino" name="nyk_paino" id="paino"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Pituus" name="nyk_pituus" id="pituus"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Leposyke" name="lepo_syke" id="leposyke"></p>
+    
+    <p><input type="text" class="form-control" placeholder="Maksimisyke" name="maks_syke" id="makssyke"></p>
+    <br>
+    <input type="submit" value="Päivitä" class="btn btn-primary"></a>
+    <a href="Profiili.php" class="btn btn-primary">Palaa</a>
+</form>
+
     </div>
   </div>
 </div>
 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
   <div class="tm-flex-center p-5 tm-bg-color-primary">
     <div class="tm-max-w-400 tm-flex-center tm-flex-col">
-      <img src="img/image-04.jpg" alt="Image" class="rounded-circle mb-4">
-      <p class="tm-text-color-white small tm-font-thin mb-0">Nullam eleifend, ipsum eu aliquet fermentum , odio urna dignissim ante, semper maximus libero nisl non nibh.</p>
+      <p class="tm-text-color-white small tm-font-thin mb-0">Ihmisen keskimääräisen maksimisykkeen voi määrittää kaavalla <br>
+      Miehet : (220 – ikä ) x 0,70  
+    <br>
+      Naiset : (226 – ikä ) x 0,70 
+    </p>
+    <br>
+    <a href="https://sydan.fi/liiku-oikealla-sykkeella/" class="btn btn-primary tm-md-flex-center">Lue lisää</a>
     </div>
   </div>
 </div>
@@ -176,7 +196,56 @@ http://www.templatemo.com/tm-514-magazee
 
 </script>
 
-
-
 </body>
 </html>
+
+
+
+<?php
+require_once ("config/config.php");
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+//yhteyden tarkistaminen
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+ 
+// määritys
+$etunimi = mysqli_real_escape_string($link, $_REQUEST['etu_nimi']);
+$sukunimi = mysqli_real_escape_string($link, $_REQUEST['suku_nimi']);
+$ika = mysqli_real_escape_string($link, $_REQUEST['nyk_ika']);
+$sahkoposti = mysqli_real_escape_string($link, $_REQUEST['sapo']);
+$sukupuoli = mysqli_real_escape_string($link, $_REQUEST['suku_puoli']);
+$paino = mysqli_real_escape_string($link, $_REQUEST['nyk_paino']);
+$pituus = mysqli_real_escape_string($link, $_REQUEST['nyk_pituus']);
+$leposyke = mysqli_real_escape_string($link, $_REQUEST['lepo_syke']);
+$makssyke = mysqli_real_escape_string($link, $_REQUEST['maks_syke']);
+
+ 
+// Tiedot kantaan
+//id = " . $_SESSION["id"]; <--- päivittää kirjautuneen käyttäjän tiedot käyttäjän id:n perusteella (käyttäjänimi toimisi myyös)
+// https://stackoverflow.com/questions/27665285/how-to-update-user-database-for-current-user-login-in-php apuna
+//https://www.siteground.com/tutorials/php-mysql/display-table-data/
+$sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', Ika = '$ika', Paino = '$paino', Pituus = '$pituus', Leposyke = '$leposyke', Makssyke = '$makssyke', Sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
+if(mysqli_query($link, $sql)){
+    header("location: Profiili.php");
+} else{
+    echo "Virhe. Tietoja ei pystytty päivittää $sql. " . mysqli_error($link);
+}
+ 
+mysqli_close($link);
+
+}
+?>
+
+<?php
+/*
+session_start();
+ 
+// Kirjautuneena sisään?
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?> */

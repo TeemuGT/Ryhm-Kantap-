@@ -1,23 +1,26 @@
-<?php 
-session_start();
-require_once ("config/config.php");
+<?php
 require_once ("loggedin.php");
+require_once ("config/config.php")
+?>
 
-//yhteyden tarkistaminen
-if($link === false){
-  die("ERROR: Could not connect. " . mysqli_connect_error());
+
+<?php
+session_start();
+ 
+// Kirjautuneena sisään?
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
-
-$ID = $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>Etusivu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Magazee HTML5 Template Mo</title>
 <!-- 
 Magazee Template 
 http://www.templatemo.com/tm-514-magazee
@@ -51,25 +54,23 @@ http://www.templatemo.com/tm-514-magazee
 <nav>
   <ul class="tm-bg-color-primary nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Etusivu.php"><u>Etusivu</u></a>
+      <a class="tm-text-color-white nav-link" href="Etusivu.php">Etusivu</a>
     </li>
     <li class="nav-item">
       <a class=" tm-text-color-white nav-link" href="Profiili.php">Profiili</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjotustiedot</a>
+      <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php">Harjoitustiedot</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="#">Asetukset</a>
+      <a class="tm-text-color-white nav-link" href="#">Yhteystiedot</a>
     </li>
     <li class="nav-item">
-      <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
+      <a href="logout.php" class="tm-text-color-white nav-link">Kirjaudu ulos</a>>
     </li>
   </ul>
   </nav>
- <?php
- include 'Pisteytys.php'
- ?>
+ 
 
 
  <div class="container">
@@ -84,36 +85,52 @@ http://www.templatemo.com/tm-514-magazee
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-    <p class="tm-quote tm-text-color-gray">Pisteesi on tällähetkellä: <?php echo $Piste ?> </p>
-    <div class="tm-flex-center p-5">
-      <p class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
-      </p>
-      
-    </div>
     
+    <div class="tm-flex-center p-5">
+        <h1>Hei, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Tervetuloa sisään.</h1>
+    </div>
   </div>
 </section>
 
 <!-- 2nd section -->
+
+<?php
+
+//kirjautuneen käyttäjän tietoja 
+//https://www.php.net/manual/en/function.print-r.php
+//mysql_fetch_assoc doesm't print out a numeric index (0, 1, 2, ..) +  associative key.
+//https://stackoverflow.com/questions/2970936/how-to-echo-out-table-rows-from-the-db-php
+//https://stackoverflow.com/questions/27431601/how-to-echo-the-row-into-my-html
+
+
+$query = "SELECT * FROM users WHERE id = " . $_SESSION["id"]; 
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+while($row = mysqli_fetch_assoc($result)) { ?>
 <section class="row tm-section tm-col-md-reverse">
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
   <div class="tm-flex-center p-5">
     <div class="tm-md-flex-center">
-      <h2 class="tm-text-color-primary mb-4">Harjoitus tiedot</h2>
-      <p class="mb-4">Sovelluksella on tarkoitus kerätä ja seurata omaa liikkumistasi ja harjoitus sivulla pystyt itse lisäämään liikkumista ja seuraamaan sitä.</p>
-      <a href="Harjoitustiedot.php" class="btn btn-primary float-lg-right tm-md-align-center">Kirjaa liikkumisesi</a>
+    <h1 class="tm-text-color-white tm-site-name"><h1><?php echo htmlspecialchars($_SESSION["username"]); //kirjautunut käyttäjä ?></h1>
+      <p class="mb-4">Etunimi: <?php echo $row["Etunimi"];  ?></p>
+      <p class="mb-4">Sukunimi: <?php echo $row["Sukunimi"]; ?></p>
+      <p class="mb-4">Sukupuoli: <?php echo $row["Sukupuoli"]; ?></p>
+      <p class="mb-4">Ikä: <?php echo $row["Ika"]; ?></p>
+      <a href="insert.php" class="btn btn-primary float-lg-right tm-md-align-center">Päivitä tietoja</a>
     </div>
   </div>
 </div>
 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
   <div class="tm-flex-center p-5 tm-bg-color-primary">
-    <div class="tm-max-w-400 tm-flex-center tm-flex-col">
-      <img src="img/image-04.jpg" alt="Image" class="rounded-circle mb-4">
-      <p class="tm-text-color-white small tm-font-thin mb-0">Nullam eleifend, ipsum eu aliquet fermentum , odio urna dignissim ante, semper maximus libero nisl non nibh.</p>
+    <div class="tm-md-flex-center">
+      <p class="tm-text-color-white">Paino: <?php echo $row["Paino"]; ?></p>
+      <p class="tm-text-color-white">Pituus: <?php echo $row["Pituus"]; ?></p>
+      <p class="tm-text-color-white">Leposyke: <?php echo $row["Leposyke"]; ?></p>
+      <p class="tm-text-color-white">Maksimisyke: <?php echo $row["Makssyke"]; ?></p>
     </div>
   </div>
 </div>
 </section>
+<?php } ?>
 
 <!-- 3rd Section -->
 <section class="row tm-section tm-mb-30">
@@ -175,8 +192,6 @@ http://www.templatemo.com/tm-514-magazee
   });
 
 </script>
-
-
 
 </body>
 </html>
