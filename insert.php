@@ -75,7 +75,7 @@ http://www.templatemo.com/tm-514-magazee
     
     <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
       
-      <h3 class="tm-text-color-white tm-site-name">Käyttäjätietojen päivittäminen</h3>
+      <h2 class="tm-text-color-white tm-site-name">Asetukset</h2>
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -113,8 +113,9 @@ http://www.templatemo.com/tm-514-magazee
     
     <p><input type="text" class="form-control" placeholder="Maksimisyke" name="maks_syke" id="makssyke"></p>
     <br>
-    <input type="submit" value="Päivitä" class="btn btn-primary"></a>
     <a href="profiili.php" class="btn btn-primary">Palaa</a>
+    <input type="submit" value="Päivitä" class="btn btn-primary"></a>
+
 </form>
 
     </div>
@@ -123,14 +124,25 @@ http://www.templatemo.com/tm-514-magazee
 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
   <div class="tm-flex-center p-5 tm-bg-color-primary">
     <div class="tm-max-w-400 tm-flex-center tm-flex-col">
-      <p class="tm-text-color-white small tm-font-thin mb-0">Ihmisen keskimääräisen maksimisykkeen voi määrittää kaavalla <br>
-      Miehet : (220 – ikä ) x 0,70  
+      <p class="tm-text-color-white small tm-font-thin mb-0">Sovelluksemme pisteytys perustuu UKK:n antamiin
+      liikuntasuosituksiin sekä sykerajoihin, jotka kaikki kehittävät ihmisen kuntoa eri tavalla. 
+      Mitä tarkemmin tiedät oman lepo - ja maksimisykkeesi, sitä tarkemmin pystyt keräämään pisteitä ja motivoida
+      itseäsi liikkumaan! <br>
+      <br>
+      Sovelluksemme sopii täysi-ikäisen henkilön aktiivisuuden seuraamiseen. Lapsia ja nuoria koskevat
+      erilaiset suositukset emmekä suosittele sovellusta alle 18 - vuotiaiden käytettäväksi. 
+      <br>
+      Ihmisen keskimääräisen maksimisykkeen voi määrittää kaavalla: <br>
+      <br>
+      Miehet : 220 – ikä  
     <br>
-      Naiset : (226 – ikä ) x 0,70 
+      Naiset : 226 – ikä <br>
+      <br>Alta löytyvistä linkeistä löydät lisää tietoa liikuntasuosituksista sekä ihmisen henkilökohtaisista sykerajoista.
     </p>
     <br>
-    <a href="https://sydan.fi/liiku-oikealla-sykkeella/" class="btn btn-primary tm-md-flex-center">Lue lisää</a>
-    </div>
+    <a href="https://www.ukkinstituutti.fi/liikkumisensuositus" class="btn btn-primary tm-md-flex-center">UKK</a>
+    <br>
+    <a href="https://sydan.fi/liiku-oikealla-sykkeella/" class="btn btn-primary tm-md-flex-center">Sykerajat</a>
   </div>
 </div>
 </section>
@@ -229,7 +241,7 @@ $makssyke = mysqli_real_escape_string($link, $_REQUEST['maks_syke']);
 //https://www.siteground.com/tutorials/php-mysql/display-table-data/
 $sql = "UPDATE users SET Etunimi = '$etunimi', Sukunimi = '$sukunimi', Sukupuoli = '$sukupuoli', ika = '$ika', paino = '$paino', pituus = '$pituus', leposyke = '$leposyke', makssyke = '$makssyke', sahkoposti = '$sahkoposti' WHERE id = " . $_SESSION["id"];
 if(mysqli_query($link, $sql)){
-    header("location: profiili.php");
+    header("location: insert.php");
 } else{
     echo "Virhe. Tietoja ei pystytty päivittää $sql. " . mysqli_error($link);
 }

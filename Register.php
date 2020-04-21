@@ -16,7 +16,7 @@
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" placeholder="Salasana (vähintään kahdeksan kirjainta)"name="password" class="form-control" value="<?php echo $password; ?>">
+                <input type="password" placeholder="Salasana (vähintään kuusi kirjainta)"name="password" class="form-control" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="inputBox <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Salasanan vahvistus
     if(empty(trim($_POST["password"]))){
         $password_err = "Syötä salasana.";     
-    } elseif(strlen(trim($_POST["password"])) < 8){
+    } elseif(strlen(trim($_POST["password"])) < 6){
         $password_err = "Salasanassa tulee olla vähintään kahdeksan kirjainta.";
     } else{
         $password = trim($_POST["password"]);

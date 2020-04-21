@@ -75,7 +75,7 @@ http://www.templatemo.com/tm-514-magazee
     
     <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
       
-      <h1 class="tm-text-color-white tm-site-name">Ryhmä Kantapään Projekti</h1>
+      <h1 class="tm-text-color-white tm-site-name">FITLYFE</h1>
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">

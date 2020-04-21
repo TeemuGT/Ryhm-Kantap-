@@ -81,13 +81,12 @@ http://www.templatemo.com/tm-514-magazee
     
     <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
       
-      <h1 class="tm-text-color-white tm-site-name">Ryhmä Kantapää Projekti</h1>
+    <h1 class="tm-text-color-white tm-site-name"><h1><?php echo htmlspecialchars($_SESSION["username"]); //kirjautunut käyttäjä ?> käyttäjätiedot</h1>
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
     
     <div class="tm-flex-center p-5">
-        <h1>Hei, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Tervetuloa sisään.</h1>
     </div>
   </div>
 </section>
@@ -110,7 +109,6 @@ while($row = mysqli_fetch_assoc($result)) { ?>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
   <div class="tm-flex-center p-5">
     <div class="tm-md-flex-center">
-    <h1 class="tm-text-color-white tm-site-name"><h1><?php echo htmlspecialchars($_SESSION["username"]); //kirjautunut käyttäjä ?></h1>
       <p class="mb-4">Etunimi: <?php echo $row["Etunimi"];  ?></p>
       <p class="mb-4">Sukunimi: <?php echo $row["Sukunimi"]; ?></p>
       <p class="mb-4">Sukupuoli: <?php echo $row["sukupuoli"]; ?></p>
