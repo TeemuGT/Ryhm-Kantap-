@@ -142,9 +142,9 @@ http://www.templatemo.com/tm-514-magazee
       <br>Alta löytyvistä linkeistä löydät lisää tietoa liikuntasuosituksista sekä ihmisen henkilökohtaisista sykerajoista.
     </p>
     <br>
-    <a href="https://www.ukkinstituutti.fi/liikkumisensuositus" class="btn btn-primary tm-md-flex-center">UKK</a>
+    <a href="https://www.ukkinstituutti.fi/liikkumisensuositus" class="btn btn-primary">UKK</a>
     <br>
-    <a href="https://sydan.fi/liiku-oikealla-sykkeella/" class="btn btn-primary tm-md-flex-center">Sykerajat</a>
+    <a href="https://sydan.fi/liiku-oikealla-sykkeella/" class="btn btn-primary ">Sykerajat</a>
   </div>
 </div>
 </section>
