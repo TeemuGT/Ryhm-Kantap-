@@ -79,9 +79,8 @@ http://www.templatemo.com/tm-514-magazee
     </div>
   </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-    
+      <p class="mb-4"><?php require_once ("require/laskutesti.php");?>
     <div class="tm-flex-center p-5">
-        <h1>Hei, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Tervetuloa sisään.</h1>
     </div>
   </div>
 </section>
@@ -90,57 +89,58 @@ http://www.templatemo.com/tm-514-magazee
 <section class="row tm-section tm-col-md-reverse">
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
   <div class="tm-flex-center p-5">
-    <div class="tm-md-flex-center">
-      <h1 class="tm-text-color-primary mb-4">Ready. Set. GO!</h1>
-      <p class="mb-4"><?php require_once ("require/laskutesti.php");?>
+    <div class="tm-text-color-primary small tm-font-thin mb-0">
+      <h2>Mikä on Fitlyfe?</h2>
+      <br>
+      <p class="tm-text-color-primary small tm-font-thin mb-0">Syöttämällä profiiliisi lepo – sekä maksimisykkeesi, pystymme määrittämään sinulle henkilökohtaiset sykerajat, joita sovelluksemme käyttää hyödykseen antaessaan sinulle pisteitä niin arkiaktiivisuudesta kuin tehdyistä harjoituksistakin. Aivan kuten UKK : n suosituksissakin, on Fitlyfella kolme tasoa: kevyt, reipas ja raskas liikunta. Mitä reippaammin liikut, sitä enemmän keräät pisteitä! Ja, koska arjen aktiivisuus näyttelee suurta osaa ihmisen hyvinvoinnissa, voit syöttää harjoitustietoihisi pelkät otetut askeleet ja kerryttää pisteitä myös tätä kautta. </p>
 
     </div>
   </div>
 </div>
 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
   <div class="tm-flex-center p-5 tm-bg-color-primary">
-    <div class="tm-max-w-400 tm-flex-center tm-flex-col">
-      <img src="img/image-04.jpg" alt="Image" class="rounded-circle mb-4">
-      <p class="tm-text-color-white small tm-font-thin mb-0">Nullam eleifend, ipsum eu aliquet fermentum , odio urna dignissim ante, semper maximus libero nisl non nibh.</p>
+    <div class="tm-text-color-white small tm-font-thin mb-0">
+    <h2>Pisteytyksestä</h2>
+    <br>
+      <p class="tm-text-color-white small tm-font-thin mb-0">Syöttämällä profiiliisi lepo – sekä maksimisykkeesi, pystymme määrittämään sinulle henkilökohtaiset sykerajat, joita sovelluksemme käyttää hyödykseen antaessaan sinulle pisteitä niin arkiaktiivisuudesta kuin tehdyistä harjoituksistakin. Aivan kuten UKK : n suosituksissakin, on Fitlyfella kolme tasoa: kevyt, reipas ja raskas liikunta. Mitä reippaammin liikut, sitä enemmän keräät pisteitä! Ja, koska arjen aktiivisuus näyttelee suurta osaa ihmisen hyvinvoinnissa, voit syöttää harjoitustietoihisi pelkät otetut askeleet ja kerryttää pisteitä myös tätä kautta. </p>
     </div>
   </div>
 </div>
 </section>
 
 <!-- 3rd Section -->
-<section class="row tm-section tm-mb-30">
-  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0 text-center">
-    <img src="img/image-01.jpg" alt="Image" class="img-fluid">
-  </div>
+<section class="row tm-section tm-col-md-reverse">
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
+        <div class="tm-flex-center p-5 tm-bg-color-primary">
+          <div class="tm-text-color-white small tm-font-thin mb-0">
+          <h2>Kaikki liike lasketaan</h2>
+          <br>
+          <p>UKK - instituutti julkaisi lokakuussa 2019 seuraavat, uudistetut liikuntasuositukset aikuisille.</p>
+          <br>
+          <p>LIHASKUNTOA JA LIIKEHALLINTAA</p>
+          <p class="tm-text-color-white small tm-font-thin mb-0">Ihmisen tulisi kuormittaa suuria lihaksia ja kehittää liikkuvuutta vähintään kahdesti viikossa. Tähän sopivat esimerkiksi kuntosaliharjoitukset ja ryhmäliikunta. </p>
+          <br>
+          <p>REIPASTA JA RASITTAVAA LIIKUNTAA</p>
+          <p class="tm-text-color-white small tm-font-thin mb-0">Sydämen sykettä nostattavaa liikuntaa kuten uintia tai tanssia tulisi kertyä viikossa vähintään 2h ja 30min tai rasittavampaa urheilua, kuten juoksua tai pyöräilyä 1h ja 15min. </p>
+          <br>
+          <p>KEVYTTÄ LIIKUNTAA JA TAUKOJA</p>
+          <p class="tm-text-color-white small tm-font-thin mb-0">Monen aikuisen arkielämä on nykyään passiivista. Paikallaoloja tulisikin tauottaa mahdollisimman usein lihasten aktivoisemiseksi. Kaikki kevyt liikunta on kotiinpäin ja mm. pihatyöt ja arkiaskareet pitävät nivelet vetreänä ja verenkierron vilkkaana.  </p>
+          <br>
+          <p>UNTA</h3>
+            <br>
+            <p class="tm-text-color-white small tm-font-thin mb-0">Vaikka liike on tärkeää, on myös levolla paikkansa. Mistä tietää siis saaneensa tarpeeksi palauttavaa unta? Se on yksinkertaista: kun heräät virkeänä, tiedät saaneesi unta tarpeeksi!  </p>
+        </div>
+        </div>
+      </div>
   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
     <div class="tm-flex-center p-5">
       <div class="tm-flex-center tm-flex-col">
-        <h2 class="tm-align-left">Loerm ipsum dolor sit amet</h2>
-        <p>This is one-page HTML5 template that you can use for any purpose. Please tell your friends about <a href="https://www.facebook.com/templatemo" target="_parent">TemplateMo</a> website. Thank you.</p>
-        <a href="#" class="btn btn-primary">Read More</a>
+        <img src="img/4203-aikuisten-liikkumisen_suositus-kuva-web.jpg" alt="UKK" class="img-fluid">
+        <a href="https://www.ukkinstituutti.fi/liikkumisensuositus" class="btn btn-primary">Lue lisää</a>
       </div>
     </div>
   </div>
 </section>
-
-<!-- 4th Section -->
-<section class="row tm-section tm-mb-30">
- <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-  <div class="tm-flex-center pl-5 pr-5 pt-5 pb-5">
-    <div class="tm-md-flex-center">
-     <h2 class="mb-4 tm-text-color-primary">Meidän sovellus</h2>
-     <p>Voisimme tarinoda tähän jotakin?</p>
-     <p class="mb-4">Ja vähän lisää tarinaa?</p>
-     <p class="mb-4">Ja sitten veilä vähän lisää?</p>
-     <a href="#" class="btn btn-primary float-lg-right tm-md-align-center">Read More</a>
-   </div>
- </div>
-</div>
-<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 text-xl-right text-md-center text-center mt-5 mt-lg-0 pr-lg-0">
- <img src="img/image-02.jpg" alt="Image" class="img-fluid">
-</div>
-</section>
-
 
 
 

@@ -130,7 +130,9 @@ http://www.templatemo.com/tm-514-magazee
       itseäsi liikkumaan! <br>
       <br>
       Sovelluksemme sopii täysi-ikäisen henkilön aktiivisuuden seuraamiseen. Lapsia ja nuoria koskevat
-      erilaiset suositukset emmekä suosittele sovellusta alle 18 - vuotiaiden käytettäväksi. 
+      erilaiset suositukset emmekä suosittele sovellusta alle 18 - vuotiaiden käytettäväksi. <br>
+      <br>
+      Naisilla leposykkeen keskiarvo on 51 bpm ja miehillä 48 bpm.<br>
       <br>
       Ihmisen keskimääräisen maksimisykkeen voi määrittää kaavalla: <br>
       <br>
@@ -146,41 +148,6 @@ http://www.templatemo.com/tm-514-magazee
   </div>
 </div>
 </section>
-
-<!-- 3rd Section -->
-<section class="row tm-section tm-mb-30">
-  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0 text-center">
-    <img src="img/image-01.jpg" alt="Image" class="img-fluid">
-  </div>
-  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-    <div class="tm-flex-center p-5">
-      <div class="tm-flex-center tm-flex-col">
-        <h2 class="tm-align-left">Loerm ipsum dolor sit amet</h2>
-        <p>This is one-page HTML5 template that you can use for any purpose. Please tell your friends about <a href="https://www.facebook.com/templatemo" target="_parent">TemplateMo</a> website. Thank you.</p>
-        <a href="#" class="btn btn-primary">Read More</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4th Section -->
-<section class="row tm-section tm-mb-30">
- <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-  <div class="tm-flex-center pl-5 pr-5 pt-5 pb-5">
-    <div class="tm-md-flex-center">
-     <h2 class="mb-4 tm-text-color-primary">Meidän sovellus</h2>
-     <p>Voisimme tarinoda tähän jotakin?</p>
-     <p class="mb-4">Ja vähän lisää tarinaa?</p>
-     <p class="mb-4">Ja sitten veilä vähän lisää?</p>
-     <a href="#" class="btn btn-primary float-lg-right tm-md-align-center">Read More</a>
-   </div>
- </div>
-</div>
-<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 text-xl-right text-md-center text-center mt-5 mt-lg-0 pr-lg-0">
- <img src="img/image-02.jpg" alt="Image" class="img-fluid">
-</div>
-</section>
-
 
 
 
