@@ -55,7 +55,7 @@ http://www.templatemo.com/tm-514-magazee
         <a class=" tm-text-color-white nav-link" href="profiili.php">Profiili</a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjoitustiedot</u></a>
+        <a class="tm-text-color-white nav-link" href="etusivu.php">Info</a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="#">Yhteystiedot/a>

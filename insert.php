@@ -103,15 +103,15 @@ http://www.templatemo.com/tm-514-magazee
     
     <p><input type="number" class="form-control" min="1" max="100" required placeholder="Ikä" name="nyk_ika" id="ika"></p>
     
-    <p><input type="text" class="form-control" required placeholder="Sähköpostiosoite" name="sapo" id="sahkoposti"></p>
+    <p><input type="text" class="form-control" minlength="5" maxlenght="50" required placeholder="Sähköpostiosoite" name="sapo" id="sahkoposti"></p>
   
-    <p><input type="number" class="form-control" required placeholder="Paino (kg)" name="nyk_paino" id="paino"></p>
+    <p><input type="number" class="form-control" min="1" max="500" required placeholder="Paino (kg)" name="nyk_paino" id="paino"></p>
     
-    <p><input type="number" class="form-control" min="0.1" max="500" required placeholder="Pituus (cm)" name="nyk_pituus" id="pituus"></p>
+    <p><input type="number" class="form-control" min="1" max="250" required placeholder="Pituus (cm)" name="nyk_pituus" id="pituus"></p>
     
     <p><input type="number" class="form-control" min="1" max="100" required placeholder="Leposyke (bpm)" name="lepo_syke" id="leposyke"></p>
     
-    <p><input type="number" class="form-control" min="1" max="226" required placeholder="Maksimisyke (bpm)" name="maks_syke" id="makssyke"></p>
+    <p><input type="number" class="form-control" min="1" max="250" required placeholder="Maksimisyke (bpm)" name="maks_syke" id="makssyke"></p>
     <br>
     <a href="profiili.php" class="btn btn-primary">Palaa</a>
     <input type="submit" value="Päivitä" class="btn btn-primary"></a>
