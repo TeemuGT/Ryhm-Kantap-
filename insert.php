@@ -92,26 +92,26 @@ http://www.templatemo.com/tm-514-magazee
   <div class="tm-flex-center p-5">
     <div class="tm-md-flex-center">
       <p class="mb-4"><form action="insert.php" method="post">
-<div class="tm-flex-center p-5">
+<div class="tm-flex-center p-5" value="">
     </div>
     <p>Täytäthän kaikki lomakkeen kentät ennen "Päivitä" - painikkeen painamista.</p>
-    <p> <input type="text" class="form-control" placeholder= "Etunimi" name="etu_nimi" id="etunimi"></p>
+    <p> <input type="text" class="form-control" required placeholder= "Etunimi" name="etu_nimi" id="etunimi"></p>
 
-    <p><input type="text" class="form-control" placeholder="Sukunimi" name="suku_nimi" id="sukunimi"></p>
+    <p><input type="text" class="form-control" required placeholder="Sukunimi" name="suku_nimi" id="sukunimi"></p>
     
-    <p><input type="text" class="form-control" placeholder="Sukupuoli" name="suku_puoli" id="sukupuoli"></p>
+    <p><input type="text" class="form-control"  required placeholder="Sukupuoli" name="suku_puoli" id="sukupuoli"></p>
     
-    <p><input type="text" class="form-control" placeholder="Ikä" name="nyk_ika" id="ika"></p>
+    <p><input type="number" class="form-control" min="1" max="100" required placeholder="Ikä" name="nyk_ika" id="ika"></p>
     
-    <p><input type="text" class="form-control" placeholder="Sähköpostiosoite" name="sapo" id="sahkoposti"></p>
+    <p><input type="text" class="form-control" required placeholder="Sähköpostiosoite" name="sapo" id="sahkoposti"></p>
+  
+    <p><input type="number" class="form-control" required placeholder="Paino (kg)" name="nyk_paino" id="paino"></p>
     
-    <p><input type="text" class="form-control" placeholder="Paino" name="nyk_paino" id="paino"></p>
+    <p><input type="number" class="form-control" min="0.1" max="500" required placeholder="Pituus (cm)" name="nyk_pituus" id="pituus"></p>
     
-    <p><input type="text" class="form-control" placeholder="Pituus" name="nyk_pituus" id="pituus"></p>
+    <p><input type="number" class="form-control" min="1" max="100" required placeholder="Leposyke (bpm)" name="lepo_syke" id="leposyke"></p>
     
-    <p><input type="text" class="form-control" placeholder="Leposyke" name="lepo_syke" id="leposyke"></p>
-    
-    <p><input type="text" class="form-control" placeholder="Maksimisyke" name="maks_syke" id="makssyke"></p>
+    <p><input type="number" class="form-control" min="1" max="226" required placeholder="Maksimisyke (bpm)" name="maks_syke" id="makssyke"></p>
     <br>
     <a href="profiili.php" class="btn btn-primary">Palaa</a>
     <input type="submit" value="Päivitä" class="btn btn-primary"></a>
