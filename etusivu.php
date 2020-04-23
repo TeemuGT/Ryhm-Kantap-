@@ -92,7 +92,7 @@ http://www.templatemo.com/tm-514-magazee
     <div class="tm-text-color-primary small tm-font-thin mb-0">
       <h2>Mikä on Fitlyfe?</h2>
       <br>
-      <p class="tm-text-color-primary small tm-font-thin mb-0">Syöttämällä profiiliisi lepo – sekä maksimisykkeesi, pystymme määrittämään sinulle henkilökohtaiset sykerajat, joita sovelluksemme käyttää hyödykseen antaessaan sinulle pisteitä niin arkiaktiivisuudesta kuin tehdyistä harjoituksistakin. Aivan kuten UKK : n suosituksissakin, on Fitlyfella kolme tasoa: kevyt, reipas ja raskas liikunta. Mitä reippaammin liikut, sitä enemmän keräät pisteitä! Ja, koska arjen aktiivisuus näyttelee suurta osaa ihmisen hyvinvoinnissa, voit syöttää harjoitustietoihisi pelkät otetut askeleet ja kerryttää pisteitä myös tätä kautta. </p>
+      <p class="tm-text-color-primary small tm-font-thin mb-0">Fitlyfe on kolmen hyvinvointi – ja terveysteknologian opiskelijan kehittämä sovellus, jonka tarkoituksena on motivoida erityisesti opiskelijoita, mutta myös muita, lisäämään arkiaktiivisuuttaan. Pitkät työ – ja opiskelupäivät passivoivat ihmistä ja tätä ongelmaa tahdoimme lähteä ratkaisemaan. Arjen pienet teot kuten aikaisemmalla pysäkillä bussista jääminen tai luentojen ja työpäivän säännöllinen tauottaminen tekevät yllättävän suuren eron aktiivisuuteen ja vireystilaan. Kun veri kiertää, toimii mielikin paremmin. Omaan terveyteen panostaminen onkin paras investointi minkä voit tehdä! </p>
 
     </div>
   </div>
