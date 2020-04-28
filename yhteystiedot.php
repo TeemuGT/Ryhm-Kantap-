@@ -116,10 +116,15 @@ http://www.templatemo.com/tm-514-magazee
     <div class="tm-max-w-400 tm-flex-center tm-flex-col">
     <img src="img/Emiliankuva.jpeg" alt="Image" class="rounded-circle mb-4">
   </div>
-  <h2 class="tm-text-color-primary mb-4">Emilia Larmala</h2>
-        <p>Metropolia ammattikorkeakoulu <br>Tieto- ja viestintätekniikka, opiskelija<br>Toimii projektissa Skrum masterina.</p>
       </div>
   </div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
+  <div class="tm-flex-center p-5">
+    <div class="tm-md-flex-center">
+    <h2 class="tm-text-color-primary mb-4">Emilia Larmala</h2>
+      <p>Metropolia ammattikorkeakoulu <br>Tieto- ja viestintätekniikka, opiskelija<br>Toimii projektissa Skrum masterina.</p>
+  </div>
+</div>
 </section>
 
 <!-- 2nd Section again -->
