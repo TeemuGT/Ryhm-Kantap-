@@ -108,7 +108,12 @@ http://www.templatemo.com/tm-514-magazee
 </div>
 </section>
 
-<!-- 3rd Section -->
+<!-- //http://www.fitlandia.fi/sykerajat-ja-harjoittelu/
+//https://sydan.fi/liiku-oikealla-sykkeella/
+//https://www.terveyskirjasto.fi/terveyskirjasto/tk.koti?p_artikkeli=dlk01005
+//https://www.ukkinstituutti.fi/liikkumisensuositus/aikuisten-liikkumisen-suositus
+//https://kuntoplus.fi/treeni/kunto/loyda-henkilokohtaiset-sykerajasi
+ -->
 <section class="row tm-section tm-col-md-reverse">
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
         <div class="tm-flex-center p-5 tm-bg-color-primary">

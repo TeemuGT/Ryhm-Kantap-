@@ -12,13 +12,13 @@
         <h2>Uuden tilin luonti</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="inputBox <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <input type="text" placeholder="Käyttäjänimi" required name="username" class="form-control" value="<?php echo $username; ?>">
+                <input type="text" required pattern=".{4,10}" placeholder="Käyttäjänimi" title = "Käyttäjänimen tulee olla 4-10 merkkiä pitkä." required name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; 
             //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password
             //https://stackoverflow.com/questions/34084487/how-to-set-minimum-length-of-password ?>">
-                <input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Salasanan tulee olla vähintään kahdeksan kirjainta, sisältää yhden ison ja yhden pienen kirjaimen sekä numeron." placeholder="Salasana"name="password" class="form-control" value="<?php echo $password; ?>">
+                <input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Salasanan tulee olla vähintään kuusi merkkiä pitkä ja sisältää sekä pieniä kirjaimia, isoja kirjaimia että numeroita." placeholder="Salasana"name="password" class="form-control" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="inputBox <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
