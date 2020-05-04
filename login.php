@@ -28,7 +28,8 @@
 
 <?php
 session_start();
- 
+
+//https://www.tutorialrepublic.com/php-tutorial/
 // Onko jo kirjautunut? Ohjaa welcome sivulle (vaihda etusivuun)
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: etusivu.php");

@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <html lang="en">
@@ -12,18 +12,20 @@
         <h2>Uuden tilin luonti</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="inputBox <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <input type="text" placeholder="Käyttäjänimi" name="username" class="form-control" value="<?php echo $username; ?>">
+                <input type="text" required pattern=".{4,10}" placeholder="Käyttäjänimi" title = "Käyttäjänimen tulee olla 4-10 merkkiä pitkä." required name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
-            <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" placeholder="Salasana"name="password" class="form-control" value="<?php echo $password; ?>">
+            <div class="inputBox <?php echo (!empty($password_err)) ? 'has-error' : ''; 
+            //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password
+            //https://stackoverflow.com/questions/34084487/how-to-set-minimum-length-of-password ?>">
+                <input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Salasanan tulee olla vähintään kuusi merkkiä pitkä ja sisältää sekä pieniä kirjaimia, isoja kirjaimia että numeroita." placeholder="Salasana"name="password" class="form-control" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="inputBox <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" placeholder="Vahvista salasana"name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <input type="password" placeholder="Vahvista salasana" required name="confirm_password" class="form-control" <?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
-            <div class="button">
+            <div class="button"<>
                 <input type="submit" class="btn btn-primary" value="Luo tili">
                 <input type="reset" class="btn btn-default" value="Nollaa">
             </div>
@@ -34,6 +36,7 @@
 </html>
 
 <?php
+//https://www.tutorialrepublic.com/php-tutorial/
 require_once "config/config.php";
  
 $username = $password = $confirm_password = "";
@@ -104,7 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // suoritus
             if(mysqli_stmt_execute($stmt)){
                 // ohjaa käyttäjän takaisin kirjautumiseen
-                header("location: Etusivu.php");
+                header("location: etusivu.php");
             } else{
                 echo "Jotain meni vikaan. Ole hyvä ja yritä myöhemmin uudestaan.";
             }

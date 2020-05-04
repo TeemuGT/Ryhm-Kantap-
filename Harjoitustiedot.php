@@ -45,7 +45,7 @@ http://www.templatemo.com/tm-514-magazee
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
   </div>
-
+<!-- Navigointi taulukko sivun yläosaan -->
   <nav>
     <ul class="tm-bg-color-primary nav nav-pills nav-fill">
       <li class="nav-item">
@@ -58,14 +58,15 @@ http://www.templatemo.com/tm-514-magazee
         <a class="tm-text-color-white nav-link" href="Harjoitustiedot.php"><u>Harjotustiedot</u></a>
       </li>
       <li class="nav-item">
-        <a class="tm-text-color-white nav-link" href="Pisteytys.php">Asetukset</a>
+        <a class="tm-text-color-white nav-link" href="yhteistiedot.php">Yhteistiedot</a>
       </li>
       <li class="nav-item">
         <a class="tm-text-color-white nav-link" href="logout.php">Kirjaudu ulos</a>
       </li>
     </ul>
     </nav>
-
+  
+    
   <div class="container">
 
     <!-- 1st section -->
@@ -78,7 +79,7 @@ http://www.templatemo.com/tm-514-magazee
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-      
+    
       <div class="tm-flex-center p-5">
         <q class="tm-quote tm-text-color-gray">Tervetuloa käyttämään harjoitus ohjelmaamme!!! Tähän voi kirjoitella vaikka mitä.
         </q>
@@ -87,7 +88,8 @@ http://www.templatemo.com/tm-514-magazee
   </section>
  
   
-  <!-- 2nd section -->
+  <!-- 2nd section  
+        Taulukko minne voi lisätä urheilusuorituksia -->
   <section class="row tm-section tm-col-md-reverse">
     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
     <div class="tm-flex-center p-5">
@@ -101,9 +103,12 @@ http://www.templatemo.com/tm-514-magazee
                 <input type="number" min="0.1" max="500" step="0.1" name="Matka_Input" class="form-control" id="MatkaInput" placeholder="Matka (km)">
             </div> 
             <div class="form-group">
-                <input type="number" min=30 max="200" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
+                <input type="number" min=30 max="250" name="Syke_Input" class="form-control" id="SykeInput" placeholder="Syke (min)">
             </div> 
-            <input class="btn-primary" type="submit" value="submit">
+            <div class="form-group">
+                <input type="number" min=0.1 max="200" step="0.1" name="Min_Input" class="form-control" id="MinInput" placeholder="Harjoituksen kesto (min)">
+            </div> 
+            <input class="btn-primary" type="submit" value="Lähetä">
          </form>
          <?php
 
@@ -112,21 +117,83 @@ http://www.templatemo.com/tm-514-magazee
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   
        
-// määritys
+// Yksikoiden määritys sekä taulukkoon annettujen arvojen hakeminen
 $AskelInput = mysqli_real_escape_string($link, $_REQUEST['Askel_Input']);
 $MatkaInput = mysqli_real_escape_string($link, $_REQUEST['Matka_Input']);
 $SykeInput = mysqli_real_escape_string($link, $_REQUEST['Syke_Input']);
-$Pisteytys = $AskelInput/1000;
+$MinInput = mysqli_real_escape_string($link, $_REQUEST['Min_Input']);
+
+$tulos = $SykeInput;
+$minuutit = $MinInput;
+$askeleet = $AskelInput;
+$makssyke;
+$leposyke;
+
+
+
+// Heataan kannasta henkilön maksimi ja leposyke
+$query = "SELECT Leposyke, Makssyke FROM users WHERE id = $ID";
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+while($row = mysqli_fetch_assoc($result)) {
+  $leposyke = $row['Leposyke'];
+  $makssyke = $row['Makssyke'];
+  }
+  
+
+  // laskukaavat perustuvat UKK:n liikuntasuosituksiin + sykerajasuosituksiin
+  // jos ei syötä minuutteja ja syketietoja niin pisteyttää pelkät askeleet
+  // Kannasta haetut henk.koht syketiedot sykerajojen määritystä varten. 
+  //Kolme rajaa; kevyt, reipas, raska -> vastaavat UKK:n liikuntasuositusten tasoja
+  
+  //http://www.fitlandia.fi/sykerajat-ja-harjoittelu/
+  //https://sydan.fi/liiku-oikealla-sykkeella/
+  //https://www.terveyskirjasto.fi/terveyskirjasto/tk.koti?p_artikkeli=dlk01005
+  $kevyt_yla = ($makssyke - $leposyke) * (60/100) + $leposyke ;
+  $reipas_ala = ($makssyke - $leposyke) * (61/100) + $leposyke ;
+  $raskas_ala = ($makssyke - $leposyke) * (71/100) + $leposyke ;
+
+  //Ei syketietoja = pisteeet askelista
+    // 10 000 askelta päivässä = "täydet" pisteet
+  if( $tulos == 0){
+
+    $Pisteytys = $askeleet * 0.0015 ;
+    //Ei syketietoja = pisteeet askelista
+    // 10 000 askelta päivässä = "täydet" pisteet
+
+  } else if (0 < $tulos && $tulos < $reipas_ala){
+
+    $Pisteytys = $minuutit * 0.32 ;
+    //Itse määritetty. N. puolet enemmän kevyttä kuin reipasta liikuntaa
+    //Raskas taso = 100p = 100/300min = 0,333...=0,32p/min 
+
+
+  } else if ($reipas_ala < $tulos && $tulos < $raskas_ala){
+
+    $Pisteytys = $minuutit * 0.67 ; 
+    //Reipas taso = 100p = 100/150min = 0,666666...=0,67p/min 
+
+  } else {
+
+    $Pisteytys = $minuutit * 1.35 ; 
+     //Raskas taso = 100p = 100/75min = 1,3333...=1.35p/min 
+  }
+
+
+
+
+
+
+// Haetaan kannasta käyttäjän tämänhetkinen piste määrä ja lisätään siihen uudet pisteet mitä on tullut edellisestä harjoitteesta
 
  $query = "SELECT Pisteytys FROM users WHERE id = $ID";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 while($row = mysqli_fetch_assoc($result)) {
   $Pisteytys += $row['Pisteytys'];
   }
+  
 
-
-// Tiedot kantaan
-$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$ID')";
+// Lähetetään harjoitustiedot kantaan ja jos se onnistuu niin päivitetään uusi piste luku kantaan.
+$sql = "INSERT INTO Harjoitustiedot (askeleet, matka, syke, minuutit, id_user) VALUES ('$AskelInput', '$MatkaInput', '$SykeInput', '$MinInput', '$ID')";
 if(mysqli_query($link, $sql)){
   $sql = "UPDATE users SET Pisteytys='$Pisteytys' WHERE id = $ID";
   if(mysqli_query($link, $sql)){
@@ -142,8 +209,8 @@ mysqli_close($link);
 }
 
 
-
 ?>
+<!-- Haetaan kannasta kaikki harjoitukset ja lasketaan niistä keskiarvoja ja kokonaismääriä -->
       </div>
     </div>
   </div>
@@ -171,10 +238,12 @@ mysqli_close($link);
         if($ksyke > 0){
         $asyke = $ksyke/$mittaus;
         }
+
+        // tulostetaan taulukkoon lasketut keskiarvot ja kokonaismäärät.
         echo "<table style='width:100%; height:75%;  border: solid 4px white;'><tr><th>Harjoite </th><th> Määrä </th></tr>";
         echo "<tr style='border: solid 1px'><td>Askelten määrä</td><td>" . $kaskel . " kpl</td></tr>";
         echo "<tr><td>Kuljettu matka</td><td>" . $kmatka . " km</td></tr>";
-        echo "<tr style='border: solid 1px'><td>Sykkeen keskiarvo</td><td type='number; step=0.1;'>" . $asyke . "</td></tr>";
+        echo "<tr style='border: solid 1px'><td>Sykkeen keskiarvo</td><td>" . $asyke . "/min</td></tr>";
         
         echo "</table>";
           ?>
@@ -186,23 +255,25 @@ mysqli_close($link);
  
           
   
-  <!-- 4th Section -->
+  <!-- 4th Section  Haetaan kaikki harjoitukset kannasta  -->
   <section class="row tm-section tm-mb-30">
    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-12 tm-bg-color-primary tm-text-color-white">
     
    <p>
       <?php
       $maara;
-  $query = "SELECT id_mittaus, aika, askeleet, matka, syke FROM Harjoitustiedot WHERE id_user = $ID";
+  $query = "SELECT id_mittaus, aika, askeleet, matka, syke, minuutit FROM Harjoitustiedot WHERE id_user = $ID";
   $result = mysqli_query($link, $query) or die(mysqli_error($link));
     echo "<table style='width:100%;border: solid 4px white;'><tr><th>Kirjaus Aika </th><th>Harjoitus</th><th>Tuloksesi</th></tr>";
-  while($row = mysqli_fetch_assoc($result)) {   
+        //tulostetaan kaikki harjoitukset taulukkoon erillisinä harjoitteina.
+    while($row = mysqli_fetch_assoc($result)) {   
         $maara+=1;
         echo "<tr style='border: solid 1px ;'><td><br></td><td></td><td></td></tr>";
         echo "<tr><td>". $row["aika"] . "</td><td>Mittaus </td><td>" . $maara . "</td></tr>";
         echo "<tr><td>". " " . "<td>Askeleet </td><td>" . $row["askeleet"] . " kpl</td></tr>";
         echo "<tr><td>". " " . "<td>Matka (km) </td><td>" . $row["matka"] . " km</td></tr>";
-        echo "<tr><td>". " " . "<td>Syke </td><td>" . $row["syke"] . "</td></tr>";
+        echo "<tr><td>". " " . "<td>Syke </td><td>" . $row["syke"] . "/min</td></tr>";
+        echo "<tr><td>". " " . "<td>Kesto </td><td>" . $row["minuutit"] . " min</td></tr>";
   }
   echo "</table>";
       ?>
@@ -241,5 +312,4 @@ mysqli_close($link);
   
   </body>
   </html>
-
   

@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once ("config/config.php");
+require_once ("loggedin.php");
+//yhteyden tarkistaminen
+if($link === false){
+  die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$ID = $_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,62 +20,11 @@
 
 <body>
 <?php
-$query = "SELECT Pisteytys FROM users WHERE id = $ID";
-      $result = mysqli_query($link, $query) or die(mysqli_error($link));
-      while($row = mysqli_fetch_assoc($result)) {
+$query = "SELECT 	Pisteytys FROM users WHERE id = $ID";
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+while($row = mysqli_fetch_assoc($result)) {
       $Piste += $row['Pisteytys'];
       }
-      
-/*
- $query = "SELECT askeleet FROM Harjoitustiedot WHERE id_user = $ID";
-      $result = mysqli_query($link, $query) or die(mysqli_error($link));
-      $paskel;
-      $pisteet;
-      while($row = mysqli_fetch_assoc($result)) {
-        $paskel+=$row['askeleet'];
-      }
-      $pisteet=$paskel / 1000;
-      
-
-        
-
-
-
-if($pisteet >= 10.0){
-    $pisteet-=10;
-    //echo '<script>alert("POPUP") .</script>'; 
-    //myFunction();
-    
-}else{
-    return;
-}
-
-
-/*$que = mysql_query("select picture from pictures");
-while ($row = mysql_fetch_array($que)) {
-  $picture = $row['picture'];
-  echo '<input type="checkbox" id="check" style="display:none;">
-<label for="check">
-    <img src="Memet/projektiMeme.jpeg/'.$picture.
-  '" style="width:50px; height: 50px"/>
-    </label>
-<label for="check">
-    <div id="cover">
-    <div id="box">
-    <img src="Memet/projektiMeme.jpeg/'.$picture.
-  '" style="width:380px; height: 380px"/>
-    </div>
-    </div>
-    </label>';
-} ?> */
-
-
-   // myFunction(){
- //"<div class="popup" onclick="myFunction()">Click me!
-  //<span class="popuptext" id="myPopup">Popup text...</span>
-//</div>"
-  //  }
-
 
 
 ?>
